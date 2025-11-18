@@ -1,0 +1,375 @@
+C:\Users\Rob\go\src\servertest>tree /f
+Folder PATH listing
+Volume serial number is 0E62-4022
+C:.
+│   .gitattributes
+│   compose.yaml
+│   db.sqlite (2).old
+│   db.sqlite.old
+│   Dockerfile
+│   go.mod
+│   go.mod.txt
+│   go.sum
+│   run.txt
+│
+├───.vs
+│   │   ProjectSettings.json
+│   │   slnx.sqlite
+│   │   VSWorkspaceState.json
+│   │
+│   └───server
+│       ├───FileContentIndex
+│       │       95e6a846-ee82-4fb0-96fd-6f91753d4b3a.vsidx
+│       │
+│       └───v17
+│               DocumentLayout.json
+│
+├───.vscode
+│       launch.json
+│
+├───cmd
+│   │   .env
+│   │   db.sqlite
+│   │   db.sqlite-journal
+│   │   main.go
+│   │   server.exe
+│   │
+│   ├───admin-tool
+│   │       main.go
+│   │
+│   └───password-reset
+│           main.go
+│
+├───internal
+│   └───server
+│       │   connected.go
+│       │   hub.go
+│       │   overworld.go
+│       │   spawn.go
+│       │
+│       ├───clients
+│       │       websocket.go
+│       │
+│       ├───db
+│       │   │   db.go
+│       │   │   models.go
+│       │   │   queries.sql
+│       │   │   queries.sql.go
+│       │   │   queries.sql.go.old
+│       │   │
+│       │   └───config
+│       │           mysql_schema.sql
+│       │           schema.sql.old
+│       │           sqlc.yml
+│       │
+│       ├───objects
+│       │       objects.go
+│       │
+│       └───world
+│               world.go
+│
+├───pkg
+│   └───packets
+│           game_packets.pb.go
+│           game_packets.proto
+│
+├───proto
+│       game_packets.proto
+│
+└───vendor
+    │   modules.txt
+    │
+    ├───filippo.io
+    │   └───edwards25519
+    │       │   doc.go
+    │       │   edwards25519.go
+    │       │   extra.go
+    │       │   LICENSE
+    │       │   README.md
+    │       │   scalar.go
+    │       │   scalarmult.go
+    │       │   scalar_fiat.go
+    │       │   tables.go
+    │       │
+    │       └───field
+    │               fe.go
+    │               fe_amd64.go
+    │               fe_amd64.s
+    │               fe_amd64_noasm.go
+    │               fe_arm64.go
+    │               fe_arm64.s
+    │               fe_arm64_noasm.go
+    │               fe_extra.go
+    │               fe_generic.go
+    │
+    ├───github.com
+    │   ├───go-sql-driver
+    │   │   └───mysql
+    │   │           .gitignore
+    │   │           auth.go
+    │   │           AUTHORS
+    │   │           buffer.go
+    │   │           CHANGELOG.md
+    │   │           collations.go
+    │   │           compress.go
+    │   │           conncheck.go
+    │   │           conncheck_dummy.go
+    │   │           connection.go
+    │   │           connector.go
+    │   │           const.go
+    │   │           driver.go
+    │   │           dsn.go
+    │   │           errors.go
+    │   │           fields.go
+    │   │           infile.go
+    │   │           LICENSE
+    │   │           nulltime.go
+    │   │           packets.go
+    │   │           README.md
+    │   │           result.go
+    │   │           rows.go
+    │   │           statement.go
+    │   │           transaction.go
+    │   │           utils.go
+    │   │
+    │   ├───gorilla
+    │   │   └───websocket
+    │   │           .gitignore
+    │   │           AUTHORS
+    │   │           client.go
+    │   │           compression.go
+    │   │           conn.go
+    │   │           doc.go
+    │   │           join.go
+    │   │           json.go
+    │   │           LICENSE
+    │   │           mask.go
+    │   │           mask_safe.go
+    │   │           prepared.go
+    │   │           proxy.go
+    │   │           README.md
+    │   │           server.go
+    │   │           tls_handshake.go
+    │   │           tls_handshake_116.go
+    │   │           util.go
+    │   │           x_net_proxy.go
+    │   │
+    │   └───joho
+    │       └───godotenv
+    │               .gitignore
+    │               godotenv.go
+    │               LICENCE
+    │               parser.go
+    │               README.md
+    │
+    ├───golang.org
+    │   └───x
+    │       └───crypto
+    │           │   LICENSE
+    │           │   PATENTS
+    │           │
+    │           ├───bcrypt
+    │           │       base64.go
+    │           │       bcrypt.go
+    │           │
+    │           └───blowfish
+    │                   block.go
+    │                   cipher.go
+    │                   const.go
+    │
+    └───google.golang.org
+        └───protobuf
+            │   LICENSE
+            │   PATENTS
+            │
+            ├───encoding
+            │   ├───prototext
+            │   │       decode.go
+            │   │       doc.go
+            │   │       encode.go
+            │   │
+            │   └───protowire
+            │           wire.go
+            │
+            ├───internal
+            │   ├───descfmt
+            │   │       stringer.go
+            │   │
+            │   ├───descopts
+            │   │       options.go
+            │   │
+            │   ├───detrand
+            │   │       rand.go
+            │   │
+            │   ├───editiondefaults
+            │   │       defaults.go
+            │   │       editions_defaults.binpb
+            │   │
+            │   ├───encoding
+            │   │   ├───defval
+            │   │   │       default.go
+            │   │   │
+            │   │   ├───messageset
+            │   │   │       messageset.go
+            │   │   │
+            │   │   ├───tag
+            │   │   │       tag.go
+            │   │   │
+            │   │   └───text
+            │   │           decode.go
+            │   │           decode_number.go
+            │   │           decode_string.go
+            │   │           decode_token.go
+            │   │           doc.go
+            │   │           encode.go
+            │   │
+            │   ├───errors
+            │   │       errors.go
+            │   │
+            │   ├───filedesc
+            │   │       build.go
+            │   │       desc.go
+            │   │       desc_init.go
+            │   │       desc_lazy.go
+            │   │       desc_list.go
+            │   │       desc_list_gen.go
+            │   │       editions.go
+            │   │       placeholder.go
+            │   │       presence.go
+            │   │
+            │   ├───filetype
+            │   │       build.go
+            │   │
+            │   ├───flags
+            │   │       flags.go
+            │   │       proto_legacy_disable.go
+            │   │       proto_legacy_enable.go
+            │   │
+            │   ├───genid
+            │   │       any_gen.go
+            │   │       api_gen.go
+            │   │       descriptor_gen.go
+            │   │       doc.go
+            │   │       duration_gen.go
+            │   │       empty_gen.go
+            │   │       field_mask_gen.go
+            │   │       goname.go
+            │   │       go_features_gen.go
+            │   │       map_entry.go
+            │   │       name.go
+            │   │       source_context_gen.go
+            │   │       struct_gen.go
+            │   │       timestamp_gen.go
+            │   │       type_gen.go
+            │   │       wrappers.go
+            │   │       wrappers_gen.go
+            │   │
+            │   ├───impl
+            │   │       api_export.go
+            │   │       api_export_opaque.go
+            │   │       bitmap.go
+            │   │       bitmap_race.go
+            │   │       checkinit.go
+            │   │       codec_extension.go
+            │   │       codec_field.go
+            │   │       codec_field_opaque.go
+            │   │       codec_gen.go
+            │   │       codec_map.go
+            │   │       codec_message.go
+            │   │       codec_messageset.go
+            │   │       codec_message_opaque.go
+            │   │       codec_tables.go
+            │   │       codec_unsafe.go
+            │   │       convert.go
+            │   │       convert_list.go
+            │   │       convert_map.go
+            │   │       decode.go
+            │   │       encode.go
+            │   │       enum.go
+            │   │       equal.go
+            │   │       extension.go
+            │   │       lazy.go
+            │   │       legacy_enum.go
+            │   │       legacy_export.go
+            │   │       legacy_extension.go
+            │   │       legacy_file.go
+            │   │       legacy_message.go
+            │   │       merge.go
+            │   │       merge_gen.go
+            │   │       message.go
+            │   │       message_opaque.go
+            │   │       message_opaque_gen.go
+            │   │       message_reflect.go
+            │   │       message_reflect_field.go
+            │   │       message_reflect_field_gen.go
+            │   │       message_reflect_gen.go
+            │   │       pointer_unsafe.go
+            │   │       pointer_unsafe_opaque.go
+            │   │       presence.go
+            │   │       validate.go
+            │   │
+            │   ├───order
+            │   │       order.go
+            │   │       range.go
+            │   │
+            │   ├───pragma
+            │   │       pragma.go
+            │   │
+            │   ├───protolazy
+            │   │       bufferreader.go
+            │   │       lazy.go
+            │   │       pointer_unsafe.go
+            │   │
+            │   ├───set
+            │   │       ints.go
+            │   │
+            │   ├───strs
+            │   │       strings.go
+            │   │       strings_unsafe.go
+            │   │
+            │   └───version
+            │           version.go
+            │
+            ├───proto
+            │       checkinit.go
+            │       decode.go
+            │       decode_gen.go
+            │       doc.go
+            │       encode.go
+            │       encode_gen.go
+            │       equal.go
+            │       extension.go
+            │       merge.go
+            │       messageset.go
+            │       proto.go
+            │       proto_methods.go
+            │       proto_reflect.go
+            │       reset.go
+            │       size.go
+            │       size_gen.go
+            │       wrapperopaque.go
+            │       wrappers.go
+            │
+            ├───reflect
+            │   ├───protoreflect
+            │   │       methods.go
+            │   │       proto.go
+            │   │       source.go
+            │   │       source_gen.go
+            │   │       type.go
+            │   │       value.go
+            │   │       value_equal.go
+            │   │       value_union.go
+            │   │       value_unsafe.go
+            │   │
+            │   └───protoregistry
+            │           registry.go
+            │
+            └───runtime
+                ├───protoiface
+                │       legacy.go
+                │       methods.go
+                │
+                └───protoimpl
+                        impl.go
+                        version.go

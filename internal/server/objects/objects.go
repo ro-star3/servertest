@@ -18,51 +18,34 @@ func NextID() uint64 {
 	return atomic.AddUint64(&nextID, 1)
 }
 
-// Player represents a player in the minigame.
+// Player represents a player on the overworld map.
+// It only holds data relevant to the immediate game world, not persistent data.
 type Player struct {
-	ID        uint64
-	DbId      int64
+	ID        uint64  // The temporary WebSocket connection ID
+	DbId      int64   // The permanent User ID from the database
 	Name      string
-	X         float64
-	Y         float64
-	Radius    float64
-	Direction float64
-	Speed     float64
-	Color     int32
-	BestScore int64
+	MapID     string  // The map the player is currently on (e.g., "PalletTown")
+	X         float64 // Grid X position
+	Y         float64 // Grid Y position
+	Direction int     // e.g., 0:Down, 1:Up, 2:Left, 3:Right
 }
 
-// NewPlayer creates a new player object with default values.
-func NewPlayer(dbId int64, name string, color int32) *Player {
+// NewPlayer creates a new player object for the overworld.
+func NewPlayer(dbId int64, name string, mapId string, x, y float64) *Player {
 	return &Player{
-		ID:     NextID(),
-		DbId:   dbId,
-		Name:   name,
-		Radius: 20.0,
-		Speed:  150.0,
-		Color:  color,
+		ID:    NextID(),
+		DbId:  dbId,
+		Name:  name,
+		MapID: mapId,
+		X:     x,
+		Y:     y,
 	}
 }
 
-// Spore represents a consumable object in the minigame.
-type Spore struct {
-	ID     uint64
-	X      float64
-	Y      float64
-	Radius float64
-}
-
-// NewSpore creates a new spore object.
-func NewSpore(x, y, radius float64) *Spore {
-	return &Spore{
-		ID:     NextID(),
-		X:      x,
-		Y:      y,
-		Radius: radius,
-	}
-}
+// Spore object is removed as it's part of the old minigame.
 
 // SharedCollection is a thread-safe generic map for managing game objects.
+// This is a great, reusable component.
 type SharedCollection[T any] struct {
 	mx sync.RWMutex
 	m  map[uint64]T

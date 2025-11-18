@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.8
 // 	protoc        v6.32.0
-// source: game_packets.proto
+// source: pkg/packets/game_packets.proto
 
 package packets
 
@@ -30,27 +30,21 @@ type Packet struct {
 	//	*Packet_LoginRequest
 	//	*Packet_RegisterRequest
 	//	*Packet_DenyResponse
-	//	*Packet_PlayerMessage
-	//	*Packet_PlayerDirection
-	//	*Packet_Spore
-	//	*Packet_SporeConsumed
-	//	*Packet_PlayerConsumed
-	//	*Packet_Chat
-	//	*Packet_MinigameState
-	//	*Packet_PlayerData
-	//	*Packet_EnterMinigameRequest
-	//	*Packet_LeaveMinigameRequest
 	//	*Packet_SaveDataRequest
-	//	*Packet_AdminBanRequest
-	//	*Packet_AdminActionResponse
-	//	*Packet_AdminGiveItemRequest
+	//	*Packet_PlayerData
 	//	*Packet_PlayerDataUpdate
+	//	*Packet_EnterWorldRequest
+	//	*Packet_MapData
+	//	*Packet_PlayerMoveRequest
+	//	*Packet_PlayerPositionUpdate
+	//	*Packet_PlayerEnterMap
+	//	*Packet_PlayerLeaveMap
+	//	*Packet_Chat
 	//	*Packet_FriendRequestList
 	//	*Packet_FriendRequestSend
 	//	*Packet_FriendRequestResponse
 	//	*Packet_FriendRemove
 	//	*Packet_FriendListUpdate
-	//	*Packet_HiscoresRequest
 	//	*Packet_TradeRequestSend
 	//	*Packet_TradeRequestReceive
 	//	*Packet_TradeRequestResponse
@@ -58,7 +52,9 @@ type Packet struct {
 	//	*Packet_TradeAccept
 	//	*Packet_TradeCancel
 	//	*Packet_TradeStart
-	//	*Packet_RequestMinigameState
+	//	*Packet_AdminBanRequest
+	//	*Packet_AdminActionResponse
+	//	*Packet_AdminGiveItemRequest
 	Msg           isPacket_Msg `protobuf_oneof:"msg"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -66,7 +62,7 @@ type Packet struct {
 
 func (x *Packet) Reset() {
 	*x = Packet{}
-	mi := &file_game_packets_proto_msgTypes[0]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -78,7 +74,7 @@ func (x *Packet) String() string {
 func (*Packet) ProtoMessage() {}
 
 func (x *Packet) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[0]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -91,7 +87,7 @@ func (x *Packet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Packet.ProtoReflect.Descriptor instead.
 func (*Packet) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{0}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Packet) GetSenderId() uint64 {
@@ -144,64 +140,10 @@ func (x *Packet) GetDenyResponse() *DenyResponse {
 	return nil
 }
 
-func (x *Packet) GetPlayerMessage() *PlayerMessage {
+func (x *Packet) GetSaveDataRequest() *SaveDataRequest {
 	if x != nil {
-		if x, ok := x.Msg.(*Packet_PlayerMessage); ok {
-			return x.PlayerMessage
-		}
-	}
-	return nil
-}
-
-func (x *Packet) GetPlayerDirection() *PlayerDirectionMessage {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_PlayerDirection); ok {
-			return x.PlayerDirection
-		}
-	}
-	return nil
-}
-
-func (x *Packet) GetSpore() *SporeMessage {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_Spore); ok {
-			return x.Spore
-		}
-	}
-	return nil
-}
-
-func (x *Packet) GetSporeConsumed() *SporeConsumedMessage {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_SporeConsumed); ok {
-			return x.SporeConsumed
-		}
-	}
-	return nil
-}
-
-func (x *Packet) GetPlayerConsumed() *PlayerConsumedMessage {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_PlayerConsumed); ok {
-			return x.PlayerConsumed
-		}
-	}
-	return nil
-}
-
-func (x *Packet) GetChat() *ChatMessage {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_Chat); ok {
-			return x.Chat
-		}
-	}
-	return nil
-}
-
-func (x *Packet) GetMinigameState() *MinigameState {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_MinigameState); ok {
-			return x.MinigameState
+		if x, ok := x.Msg.(*Packet_SaveDataRequest); ok {
+			return x.SaveDataRequest
 		}
 	}
 	return nil
@@ -216,64 +158,73 @@ func (x *Packet) GetPlayerData() *Player {
 	return nil
 }
 
-func (x *Packet) GetEnterMinigameRequest() *EnterMinigameRequest {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_EnterMinigameRequest); ok {
-			return x.EnterMinigameRequest
-		}
-	}
-	return nil
-}
-
-func (x *Packet) GetLeaveMinigameRequest() *LeaveMinigameRequest {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_LeaveMinigameRequest); ok {
-			return x.LeaveMinigameRequest
-		}
-	}
-	return nil
-}
-
-func (x *Packet) GetSaveDataRequest() *SaveDataRequest {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_SaveDataRequest); ok {
-			return x.SaveDataRequest
-		}
-	}
-	return nil
-}
-
-func (x *Packet) GetAdminBanRequest() *AdminBanRequest {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_AdminBanRequest); ok {
-			return x.AdminBanRequest
-		}
-	}
-	return nil
-}
-
-func (x *Packet) GetAdminActionResponse() *AdminActionResponse {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_AdminActionResponse); ok {
-			return x.AdminActionResponse
-		}
-	}
-	return nil
-}
-
-func (x *Packet) GetAdminGiveItemRequest() *AdminGiveItemRequest {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_AdminGiveItemRequest); ok {
-			return x.AdminGiveItemRequest
-		}
-	}
-	return nil
-}
-
 func (x *Packet) GetPlayerDataUpdate() *PlayerDataUpdate {
 	if x != nil {
 		if x, ok := x.Msg.(*Packet_PlayerDataUpdate); ok {
 			return x.PlayerDataUpdate
+		}
+	}
+	return nil
+}
+
+func (x *Packet) GetEnterWorldRequest() *EnterWorldRequest {
+	if x != nil {
+		if x, ok := x.Msg.(*Packet_EnterWorldRequest); ok {
+			return x.EnterWorldRequest
+		}
+	}
+	return nil
+}
+
+func (x *Packet) GetMapData() *MapData {
+	if x != nil {
+		if x, ok := x.Msg.(*Packet_MapData); ok {
+			return x.MapData
+		}
+	}
+	return nil
+}
+
+func (x *Packet) GetPlayerMoveRequest() *PlayerMoveRequest {
+	if x != nil {
+		if x, ok := x.Msg.(*Packet_PlayerMoveRequest); ok {
+			return x.PlayerMoveRequest
+		}
+	}
+	return nil
+}
+
+func (x *Packet) GetPlayerPositionUpdate() *PlayerPositionUpdate {
+	if x != nil {
+		if x, ok := x.Msg.(*Packet_PlayerPositionUpdate); ok {
+			return x.PlayerPositionUpdate
+		}
+	}
+	return nil
+}
+
+func (x *Packet) GetPlayerEnterMap() *PlayerEnterMap {
+	if x != nil {
+		if x, ok := x.Msg.(*Packet_PlayerEnterMap); ok {
+			return x.PlayerEnterMap
+		}
+	}
+	return nil
+}
+
+func (x *Packet) GetPlayerLeaveMap() *PlayerLeaveMap {
+	if x != nil {
+		if x, ok := x.Msg.(*Packet_PlayerLeaveMap); ok {
+			return x.PlayerLeaveMap
+		}
+	}
+	return nil
+}
+
+func (x *Packet) GetChat() *ChatMessage {
+	if x != nil {
+		if x, ok := x.Msg.(*Packet_Chat); ok {
+			return x.Chat
 		}
 	}
 	return nil
@@ -319,15 +270,6 @@ func (x *Packet) GetFriendListUpdate() *FriendListUpdate {
 	if x != nil {
 		if x, ok := x.Msg.(*Packet_FriendListUpdate); ok {
 			return x.FriendListUpdate
-		}
-	}
-	return nil
-}
-
-func (x *Packet) GetHiscoresRequest() *HiscoresRequest {
-	if x != nil {
-		if x, ok := x.Msg.(*Packet_HiscoresRequest); ok {
-			return x.HiscoresRequest
 		}
 	}
 	return nil
@@ -396,10 +338,28 @@ func (x *Packet) GetTradeStart() *TradeStart {
 	return nil
 }
 
-func (x *Packet) GetRequestMinigameState() *RequestMinigameState {
+func (x *Packet) GetAdminBanRequest() *AdminBanRequest {
 	if x != nil {
-		if x, ok := x.Msg.(*Packet_RequestMinigameState); ok {
-			return x.RequestMinigameState
+		if x, ok := x.Msg.(*Packet_AdminBanRequest); ok {
+			return x.AdminBanRequest
+		}
+	}
+	return nil
+}
+
+func (x *Packet) GetAdminActionResponse() *AdminActionResponse {
+	if x != nil {
+		if x, ok := x.Msg.(*Packet_AdminActionResponse); ok {
+			return x.AdminActionResponse
+		}
+	}
+	return nil
+}
+
+func (x *Packet) GetAdminGiveItemRequest() *AdminGiveItemRequest {
+	if x != nil {
+		if x, ok := x.Msg.(*Packet_AdminGiveItemRequest); ok {
+			return x.AdminGiveItemRequest
 		}
 	}
 	return nil
@@ -410,6 +370,7 @@ type isPacket_Msg interface {
 }
 
 type Packet_Id struct {
+	// --- Connection & Auth ---
 	Id *IdMessage `protobuf:"bytes,3,opt,name=id,proto3,oneof"`
 }
 
@@ -425,68 +386,49 @@ type Packet_DenyResponse struct {
 	DenyResponse *DenyResponse `protobuf:"bytes,7,opt,name=deny_response,json=denyResponse,proto3,oneof"`
 }
 
-type Packet_PlayerMessage struct {
-	PlayerMessage *PlayerMessage `protobuf:"bytes,8,opt,name=player_message,json=playerMessage,proto3,oneof"`
-}
-
-type Packet_PlayerDirection struct {
-	PlayerDirection *PlayerDirectionMessage `protobuf:"bytes,9,opt,name=player_direction,json=playerDirection,proto3,oneof"`
-}
-
-type Packet_Spore struct {
-	Spore *SporeMessage `protobuf:"bytes,10,opt,name=spore,proto3,oneof"`
-}
-
-type Packet_SporeConsumed struct {
-	SporeConsumed *SporeConsumedMessage `protobuf:"bytes,11,opt,name=spore_consumed,json=sporeConsumed,proto3,oneof"`
-}
-
-type Packet_PlayerConsumed struct {
-	PlayerConsumed *PlayerConsumedMessage `protobuf:"bytes,13,opt,name=player_consumed,json=playerConsumed,proto3,oneof"`
-}
-
-type Packet_Chat struct {
-	Chat *ChatMessage `protobuf:"bytes,20,opt,name=chat,proto3,oneof"`
-}
-
-type Packet_MinigameState struct {
-	MinigameState *MinigameState `protobuf:"bytes,21,opt,name=minigame_state,json=minigameState,proto3,oneof"`
-}
-
-type Packet_PlayerData struct {
-	PlayerData *Player `protobuf:"bytes,22,opt,name=player_data,json=playerData,proto3,oneof"`
-}
-
-type Packet_EnterMinigameRequest struct {
-	EnterMinigameRequest *EnterMinigameRequest `protobuf:"bytes,23,opt,name=enter_minigame_request,json=enterMinigameRequest,proto3,oneof"`
-}
-
-type Packet_LeaveMinigameRequest struct {
-	LeaveMinigameRequest *LeaveMinigameRequest `protobuf:"bytes,24,opt,name=leave_minigame_request,json=leaveMinigameRequest,proto3,oneof"`
-}
-
 type Packet_SaveDataRequest struct {
 	SaveDataRequest *SaveDataRequest `protobuf:"bytes,25,opt,name=save_data_request,json=saveDataRequest,proto3,oneof"`
 }
 
-type Packet_AdminBanRequest struct {
-	AdminBanRequest *AdminBanRequest `protobuf:"bytes,26,opt,name=admin_ban_request,json=adminBanRequest,proto3,oneof"`
-}
-
-type Packet_AdminActionResponse struct {
-	AdminActionResponse *AdminActionResponse `protobuf:"bytes,27,opt,name=admin_action_response,json=adminActionResponse,proto3,oneof"`
-}
-
-type Packet_AdminGiveItemRequest struct {
-	AdminGiveItemRequest *AdminGiveItemRequest `protobuf:"bytes,28,opt,name=admin_give_item_request,json=adminGiveItemRequest,proto3,oneof"`
+type Packet_PlayerData struct {
+	PlayerData *Player `protobuf:"bytes,22,opt,name=player_data,json=playerData,proto3,oneof"` // Sent on login with full player save data. CORRECTED.
 }
 
 type Packet_PlayerDataUpdate struct {
 	PlayerDataUpdate *PlayerDataUpdate `protobuf:"bytes,29,opt,name=player_data_update,json=playerDataUpdate,proto3,oneof"`
 }
 
+type Packet_EnterWorldRequest struct {
+	// --- World Interaction (NEW) ---
+	EnterWorldRequest *EnterWorldRequest `protobuf:"bytes,50,opt,name=enter_world_request,json=enterWorldRequest,proto3,oneof"` // C->S: "I'm ready to enter the game world"
+}
+
+type Packet_MapData struct {
+	MapData *MapData `protobuf:"bytes,51,opt,name=map_data,json=mapData,proto3,oneof"` // S->C: Here is all the data for the map you are on
+}
+
+type Packet_PlayerMoveRequest struct {
+	PlayerMoveRequest *PlayerMoveRequest `protobuf:"bytes,52,opt,name=player_move_request,json=playerMoveRequest,proto3,oneof"` // C->S: "I want to move to this tile"
+}
+
+type Packet_PlayerPositionUpdate struct {
+	PlayerPositionUpdate *PlayerPositionUpdate `protobuf:"bytes,53,opt,name=player_position_update,json=playerPositionUpdate,proto3,oneof"` // S->C: A player (maybe you) has moved
+}
+
+type Packet_PlayerEnterMap struct {
+	PlayerEnterMap *PlayerEnterMap `protobuf:"bytes,54,opt,name=player_enter_map,json=playerEnterMap,proto3,oneof"` // S->C: A new player has appeared on your map
+}
+
+type Packet_PlayerLeaveMap struct {
+	PlayerLeaveMap *PlayerLeaveMap `protobuf:"bytes,55,opt,name=player_leave_map,json=playerLeaveMap,proto3,oneof"` // S->C: A player has left your map
+}
+
+type Packet_Chat struct {
+	// --- Social & Admin ---
+	Chat *ChatMessage `protobuf:"bytes,20,opt,name=chat,proto3,oneof"`
+}
+
 type Packet_FriendRequestList struct {
-	// --- NEW: Friends & Trading Packets ---
 	FriendRequestList *FriendRequestList `protobuf:"bytes,30,opt,name=friend_request_list,json=friendRequestList,proto3,oneof"`
 }
 
@@ -504,11 +446,6 @@ type Packet_FriendRemove struct {
 
 type Packet_FriendListUpdate struct {
 	FriendListUpdate *FriendListUpdate `protobuf:"bytes,34,opt,name=friend_list_update,json=friendListUpdate,proto3,oneof"`
-}
-
-type Packet_HiscoresRequest struct {
-	// --- NEW: Hiscores Packet ---
-	HiscoresRequest *HiscoresRequest `protobuf:"bytes,35,opt,name=hiscores_request,json=hiscoresRequest,proto3,oneof"`
 }
 
 type Packet_TradeRequestSend struct {
@@ -539,8 +476,16 @@ type Packet_TradeStart struct {
 	TradeStart *TradeStart `protobuf:"bytes,46,opt,name=trade_start,json=tradeStart,proto3,oneof"`
 }
 
-type Packet_RequestMinigameState struct {
-	RequestMinigameState *RequestMinigameState `protobuf:"bytes,47,opt,name=request_minigame_state,json=requestMinigameState,proto3,oneof"`
+type Packet_AdminBanRequest struct {
+	AdminBanRequest *AdminBanRequest `protobuf:"bytes,26,opt,name=admin_ban_request,json=adminBanRequest,proto3,oneof"`
+}
+
+type Packet_AdminActionResponse struct {
+	AdminActionResponse *AdminActionResponse `protobuf:"bytes,27,opt,name=admin_action_response,json=adminActionResponse,proto3,oneof"`
+}
+
+type Packet_AdminGiveItemRequest struct {
+	AdminGiveItemRequest *AdminGiveItemRequest `protobuf:"bytes,28,opt,name=admin_give_item_request,json=adminGiveItemRequest,proto3,oneof"`
 }
 
 func (*Packet_Id) isPacket_Msg() {}
@@ -551,35 +496,25 @@ func (*Packet_RegisterRequest) isPacket_Msg() {}
 
 func (*Packet_DenyResponse) isPacket_Msg() {}
 
-func (*Packet_PlayerMessage) isPacket_Msg() {}
-
-func (*Packet_PlayerDirection) isPacket_Msg() {}
-
-func (*Packet_Spore) isPacket_Msg() {}
-
-func (*Packet_SporeConsumed) isPacket_Msg() {}
-
-func (*Packet_PlayerConsumed) isPacket_Msg() {}
-
-func (*Packet_Chat) isPacket_Msg() {}
-
-func (*Packet_MinigameState) isPacket_Msg() {}
+func (*Packet_SaveDataRequest) isPacket_Msg() {}
 
 func (*Packet_PlayerData) isPacket_Msg() {}
 
-func (*Packet_EnterMinigameRequest) isPacket_Msg() {}
-
-func (*Packet_LeaveMinigameRequest) isPacket_Msg() {}
-
-func (*Packet_SaveDataRequest) isPacket_Msg() {}
-
-func (*Packet_AdminBanRequest) isPacket_Msg() {}
-
-func (*Packet_AdminActionResponse) isPacket_Msg() {}
-
-func (*Packet_AdminGiveItemRequest) isPacket_Msg() {}
-
 func (*Packet_PlayerDataUpdate) isPacket_Msg() {}
+
+func (*Packet_EnterWorldRequest) isPacket_Msg() {}
+
+func (*Packet_MapData) isPacket_Msg() {}
+
+func (*Packet_PlayerMoveRequest) isPacket_Msg() {}
+
+func (*Packet_PlayerPositionUpdate) isPacket_Msg() {}
+
+func (*Packet_PlayerEnterMap) isPacket_Msg() {}
+
+func (*Packet_PlayerLeaveMap) isPacket_Msg() {}
+
+func (*Packet_Chat) isPacket_Msg() {}
 
 func (*Packet_FriendRequestList) isPacket_Msg() {}
 
@@ -590,8 +525,6 @@ func (*Packet_FriendRequestResponse) isPacket_Msg() {}
 func (*Packet_FriendRemove) isPacket_Msg() {}
 
 func (*Packet_FriendListUpdate) isPacket_Msg() {}
-
-func (*Packet_HiscoresRequest) isPacket_Msg() {}
 
 func (*Packet_TradeRequestSend) isPacket_Msg() {}
 
@@ -607,8 +540,802 @@ func (*Packet_TradeCancel) isPacket_Msg() {}
 
 func (*Packet_TradeStart) isPacket_Msg() {}
 
-func (*Packet_RequestMinigameState) isPacket_Msg() {}
+func (*Packet_AdminBanRequest) isPacket_Msg() {}
 
+func (*Packet_AdminActionResponse) isPacket_Msg() {}
+
+func (*Packet_AdminGiveItemRequest) isPacket_Msg() {}
+
+// C->S: Client sends this after login to say they are ready to spawn in-world.
+type EnterWorldRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EnterWorldRequest) Reset() {
+	*x = EnterWorldRequest{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EnterWorldRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EnterWorldRequest) ProtoMessage() {}
+
+func (x *EnterWorldRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EnterWorldRequest.ProtoReflect.Descriptor instead.
+func (*EnterWorldRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{1}
+}
+
+// S->C: Sent once when the player enters a map. Contains all initial state.
+type MapData struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MapId         string                 `protobuf:"bytes,1,opt,name=map_id,json=mapId,proto3" json:"map_id,omitempty"`
+	Players       []*OtherPlayer         `protobuf:"bytes,2,rep,name=players,proto3" json:"players,omitempty"` // We can add `repeated Npc npcs = 3;` here later.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MapData) Reset() {
+	*x = MapData{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MapData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MapData) ProtoMessage() {}
+
+func (x *MapData) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MapData.ProtoReflect.Descriptor instead.
+func (*MapData) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *MapData) GetMapId() string {
+	if x != nil {
+		return x.MapId
+	}
+	return ""
+}
+
+func (x *MapData) GetPlayers() []*OtherPlayer {
+	if x != nil {
+		return x.Players
+	}
+	return nil
+}
+
+// C->S: Client requests to move to a new tile.
+type PlayerMoveRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TargetX       int32                  `protobuf:"varint,1,opt,name=target_x,json=targetX,proto3" json:"target_x,omitempty"`
+	TargetY       int32                  `protobuf:"varint,2,opt,name=target_y,json=targetY,proto3" json:"target_y,omitempty"`
+	Direction     int32                  `protobuf:"varint,3,opt,name=direction,proto3" json:"direction,omitempty"` // 0=Down, 1=Up, 2=Left, 3=Right
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerMoveRequest) Reset() {
+	*x = PlayerMoveRequest{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerMoveRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerMoveRequest) ProtoMessage() {}
+
+func (x *PlayerMoveRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerMoveRequest.ProtoReflect.Descriptor instead.
+func (*PlayerMoveRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *PlayerMoveRequest) GetTargetX() int32 {
+	if x != nil {
+		return x.TargetX
+	}
+	return 0
+}
+
+func (x *PlayerMoveRequest) GetTargetY() int32 {
+	if x != nil {
+		return x.TargetY
+	}
+	return 0
+}
+
+func (x *PlayerMoveRequest) GetDirection() int32 {
+	if x != nil {
+		return x.Direction
+	}
+	return 0
+}
+
+// S->C: Server confirms a move and broadcasts it to clients on the map.
+type PlayerPositionUpdate struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerId      uint64                 `protobuf:"varint,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"` // The ID of the player who moved.
+	NewX          int32                  `protobuf:"varint,2,opt,name=new_x,json=newX,proto3" json:"new_x,omitempty"`
+	NewY          int32                  `protobuf:"varint,3,opt,name=new_y,json=newY,proto3" json:"new_y,omitempty"`
+	Direction     int32                  `protobuf:"varint,4,opt,name=direction,proto3" json:"direction,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerPositionUpdate) Reset() {
+	*x = PlayerPositionUpdate{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerPositionUpdate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerPositionUpdate) ProtoMessage() {}
+
+func (x *PlayerPositionUpdate) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerPositionUpdate.ProtoReflect.Descriptor instead.
+func (*PlayerPositionUpdate) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *PlayerPositionUpdate) GetPlayerId() uint64 {
+	if x != nil {
+		return x.PlayerId
+	}
+	return 0
+}
+
+func (x *PlayerPositionUpdate) GetNewX() int32 {
+	if x != nil {
+		return x.NewX
+	}
+	return 0
+}
+
+func (x *PlayerPositionUpdate) GetNewY() int32 {
+	if x != nil {
+		return x.NewY
+	}
+	return 0
+}
+
+func (x *PlayerPositionUpdate) GetDirection() int32 {
+	if x != nil {
+		return x.Direction
+	}
+	return 0
+}
+
+// S->C: Broadcast to players on a map when a new player enters.
+type PlayerEnterMap struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Player        *OtherPlayer           `protobuf:"bytes,1,opt,name=player,proto3" json:"player,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerEnterMap) Reset() {
+	*x = PlayerEnterMap{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerEnterMap) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerEnterMap) ProtoMessage() {}
+
+func (x *PlayerEnterMap) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerEnterMap.ProtoReflect.Descriptor instead.
+func (*PlayerEnterMap) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *PlayerEnterMap) GetPlayer() *OtherPlayer {
+	if x != nil {
+		return x.Player
+	}
+	return nil
+}
+
+// S->C: Broadcast to players on a map when a player leaves.
+type PlayerLeaveMap struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerId      uint64                 `protobuf:"varint,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerLeaveMap) Reset() {
+	*x = PlayerLeaveMap{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerLeaveMap) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerLeaveMap) ProtoMessage() {}
+
+func (x *PlayerLeaveMap) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerLeaveMap.ProtoReflect.Descriptor instead.
+func (*PlayerLeaveMap) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *PlayerLeaveMap) GetPlayerId() uint64 {
+	if x != nil {
+		return x.PlayerId
+	}
+	return 0
+}
+
+// A simplified player object for representing other players in the world.
+type OtherPlayer struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerId      uint64                 `protobuf:"varint,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
+	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	X             int32                  `protobuf:"varint,3,opt,name=x,proto3" json:"x,omitempty"`
+	Y             int32                  `protobuf:"varint,4,opt,name=y,proto3" json:"y,omitempty"`
+	Direction     int32                  `protobuf:"varint,5,opt,name=direction,proto3" json:"direction,omitempty"`
+	SpriteId      string                 `protobuf:"bytes,6,opt,name=sprite_id,json=spriteId,proto3" json:"sprite_id,omitempty"` // e.g. "player_red_boy"
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OtherPlayer) Reset() {
+	*x = OtherPlayer{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OtherPlayer) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OtherPlayer) ProtoMessage() {}
+
+func (x *OtherPlayer) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OtherPlayer.ProtoReflect.Descriptor instead.
+func (*OtherPlayer) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *OtherPlayer) GetPlayerId() uint64 {
+	if x != nil {
+		return x.PlayerId
+	}
+	return 0
+}
+
+func (x *OtherPlayer) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *OtherPlayer) GetX() int32 {
+	if x != nil {
+		return x.X
+	}
+	return 0
+}
+
+func (x *OtherPlayer) GetY() int32 {
+	if x != nil {
+		return x.Y
+	}
+	return 0
+}
+
+func (x *OtherPlayer) GetDirection() int32 {
+	if x != nil {
+		return x.Direction
+	}
+	return 0
+}
+
+func (x *OtherPlayer) GetSpriteId() string {
+	if x != nil {
+		return x.SpriteId
+	}
+	return ""
+}
+
+type IdMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IdMessage) Reset() {
+	*x = IdMessage{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IdMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IdMessage) ProtoMessage() {}
+
+func (x *IdMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IdMessage.ProtoReflect.Descriptor instead.
+func (*IdMessage) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *IdMessage) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type LoginRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoginRequest) Reset() {
+	*x = LoginRequest{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoginRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginRequest) ProtoMessage() {}
+
+func (x *LoginRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
+func (*LoginRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *LoginRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type RegisterRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	Color         int32                  `protobuf:"varint,3,opt,name=color,proto3" json:"color,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RegisterRequest) Reset() {
+	*x = RegisterRequest{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegisterRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterRequest) ProtoMessage() {}
+
+func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterRequest.ProtoReflect.Descriptor instead.
+func (*RegisterRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *RegisterRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *RegisterRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+func (x *RegisterRequest) GetColor() int32 {
+	if x != nil {
+		return x.Color
+	}
+	return 0
+}
+
+type DenyResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Reason        string                 `protobuf:"bytes,1,opt,name=reason,proto3" json:"reason,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DenyResponse) Reset() {
+	*x = DenyResponse{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DenyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DenyResponse) ProtoMessage() {}
+
+func (x *DenyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DenyResponse.ProtoReflect.Descriptor instead.
+func (*DenyResponse) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *DenyResponse) GetReason() string {
+	if x != nil {
+		return x.Reason
+	}
+	return ""
+}
+
+type SaveDataRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	JsonData      string                 `protobuf:"bytes,1,opt,name=json_data,json=jsonData,proto3" json:"json_data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SaveDataRequest) Reset() {
+	*x = SaveDataRequest{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SaveDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SaveDataRequest) ProtoMessage() {}
+
+func (x *SaveDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SaveDataRequest.ProtoReflect.Descriptor instead.
+func (*SaveDataRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *SaveDataRequest) GetJsonData() string {
+	if x != nil {
+		return x.JsonData
+	}
+	return ""
+}
+
+// Sent on successful login, contains the entire player save data blob.
+type Player struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	BaomainJsonData string                 `protobuf:"bytes,3,opt,name=baomain_json_data,json=baomainJsonData,proto3" json:"baomain_json_data,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *Player) Reset() {
+	*x = Player{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Player) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Player) ProtoMessage() {}
+
+func (x *Player) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Player.ProtoReflect.Descriptor instead.
+func (*Player) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *Player) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Player) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Player) GetBaomainJsonData() string {
+	if x != nil {
+		return x.BaomainJsonData
+	}
+	return ""
+}
+
+type PlayerDataUpdate struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	BaomainJsonData string                 `protobuf:"bytes,1,opt,name=baomain_json_data,json=baomainJsonData,proto3" json:"baomain_json_data,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *PlayerDataUpdate) Reset() {
+	*x = PlayerDataUpdate{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerDataUpdate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerDataUpdate) ProtoMessage() {}
+
+func (x *PlayerDataUpdate) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerDataUpdate.ProtoReflect.Descriptor instead.
+func (*PlayerDataUpdate) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *PlayerDataUpdate) GetBaomainJsonData() string {
+	if x != nil {
+		return x.BaomainJsonData
+	}
+	return ""
+}
+
+// --- Chat ---
+type ChatMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Msg           string                 `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChatMessage) Reset() {
+	*x = ChatMessage{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChatMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChatMessage) ProtoMessage() {}
+
+func (x *ChatMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChatMessage.ProtoReflect.Descriptor instead.
+func (*ChatMessage) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *ChatMessage) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
+// --- Friends ---
 type FriendRequestList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -617,7 +1344,7 @@ type FriendRequestList struct {
 
 func (x *FriendRequestList) Reset() {
 	*x = FriendRequestList{}
-	mi := &file_game_packets_proto_msgTypes[1]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -629,7 +1356,7 @@ func (x *FriendRequestList) String() string {
 func (*FriendRequestList) ProtoMessage() {}
 
 func (x *FriendRequestList) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[1]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -642,7 +1369,7 @@ func (x *FriendRequestList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendRequestList.ProtoReflect.Descriptor instead.
 func (*FriendRequestList) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{1}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{16}
 }
 
 type FriendRequestSend struct {
@@ -654,7 +1381,7 @@ type FriendRequestSend struct {
 
 func (x *FriendRequestSend) Reset() {
 	*x = FriendRequestSend{}
-	mi := &file_game_packets_proto_msgTypes[2]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -666,7 +1393,7 @@ func (x *FriendRequestSend) String() string {
 func (*FriendRequestSend) ProtoMessage() {}
 
 func (x *FriendRequestSend) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[2]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -679,7 +1406,7 @@ func (x *FriendRequestSend) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendRequestSend.ProtoReflect.Descriptor instead.
 func (*FriendRequestSend) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{2}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *FriendRequestSend) GetTargetUsername() string {
@@ -692,14 +1419,14 @@ func (x *FriendRequestSend) GetTargetUsername() string {
 type FriendRequestResponse struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	TargetUsername string                 `protobuf:"bytes,1,opt,name=target_username,json=targetUsername,proto3" json:"target_username,omitempty"`
-	Accept         bool                   `protobuf:"varint,2,opt,name=accept,proto3" json:"accept,omitempty"` // true to accept, false to reject
+	Accept         bool                   `protobuf:"varint,2,opt,name=accept,proto3" json:"accept,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
 func (x *FriendRequestResponse) Reset() {
 	*x = FriendRequestResponse{}
-	mi := &file_game_packets_proto_msgTypes[3]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -711,7 +1438,7 @@ func (x *FriendRequestResponse) String() string {
 func (*FriendRequestResponse) ProtoMessage() {}
 
 func (x *FriendRequestResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[3]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -724,7 +1451,7 @@ func (x *FriendRequestResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendRequestResponse.ProtoReflect.Descriptor instead.
 func (*FriendRequestResponse) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{3}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *FriendRequestResponse) GetTargetUsername() string {
@@ -750,7 +1477,7 @@ type FriendRemove struct {
 
 func (x *FriendRemove) Reset() {
 	*x = FriendRemove{}
-	mi := &file_game_packets_proto_msgTypes[4]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -762,7 +1489,7 @@ func (x *FriendRemove) String() string {
 func (*FriendRemove) ProtoMessage() {}
 
 func (x *FriendRemove) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[4]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -775,7 +1502,7 @@ func (x *FriendRemove) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendRemove.ProtoReflect.Descriptor instead.
 func (*FriendRemove) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{4}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *FriendRemove) GetTargetUsername() string {
@@ -794,7 +1521,7 @@ type FriendListUpdate struct {
 
 func (x *FriendListUpdate) Reset() {
 	*x = FriendListUpdate{}
-	mi := &file_game_packets_proto_msgTypes[5]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -806,7 +1533,7 @@ func (x *FriendListUpdate) String() string {
 func (*FriendListUpdate) ProtoMessage() {}
 
 func (x *FriendListUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[5]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -819,7 +1546,7 @@ func (x *FriendListUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendListUpdate.ProtoReflect.Descriptor instead.
 func (*FriendListUpdate) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{5}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *FriendListUpdate) GetFriends() []*FriendListUpdate_Friend {
@@ -829,6 +1556,7 @@ func (x *FriendListUpdate) GetFriends() []*FriendListUpdate_Friend {
 	return nil
 }
 
+// --- Trading ---
 type TradeRequestSend struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	TargetUsername string                 `protobuf:"bytes,1,opt,name=target_username,json=targetUsername,proto3" json:"target_username,omitempty"`
@@ -838,7 +1566,7 @@ type TradeRequestSend struct {
 
 func (x *TradeRequestSend) Reset() {
 	*x = TradeRequestSend{}
-	mi := &file_game_packets_proto_msgTypes[6]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -850,7 +1578,7 @@ func (x *TradeRequestSend) String() string {
 func (*TradeRequestSend) ProtoMessage() {}
 
 func (x *TradeRequestSend) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[6]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -863,7 +1591,7 @@ func (x *TradeRequestSend) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TradeRequestSend.ProtoReflect.Descriptor instead.
 func (*TradeRequestSend) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{6}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *TradeRequestSend) GetTargetUsername() string {
@@ -882,7 +1610,7 @@ type TradeRequestReceive struct {
 
 func (x *TradeRequestReceive) Reset() {
 	*x = TradeRequestReceive{}
-	mi := &file_game_packets_proto_msgTypes[7]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -894,7 +1622,7 @@ func (x *TradeRequestReceive) String() string {
 func (*TradeRequestReceive) ProtoMessage() {}
 
 func (x *TradeRequestReceive) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[7]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -907,7 +1635,7 @@ func (x *TradeRequestReceive) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TradeRequestReceive.ProtoReflect.Descriptor instead.
 func (*TradeRequestReceive) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{7}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *TradeRequestReceive) GetFromUsername() string {
@@ -927,7 +1655,7 @@ type TradeRequestResponse struct {
 
 func (x *TradeRequestResponse) Reset() {
 	*x = TradeRequestResponse{}
-	mi := &file_game_packets_proto_msgTypes[8]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -939,7 +1667,7 @@ func (x *TradeRequestResponse) String() string {
 func (*TradeRequestResponse) ProtoMessage() {}
 
 func (x *TradeRequestResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[8]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -952,7 +1680,7 @@ func (x *TradeRequestResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TradeRequestResponse.ProtoReflect.Descriptor instead.
 func (*TradeRequestResponse) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{8}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *TradeRequestResponse) GetTargetUsername() string {
@@ -981,7 +1709,7 @@ type TradeUpdate struct {
 
 func (x *TradeUpdate) Reset() {
 	*x = TradeUpdate{}
-	mi := &file_game_packets_proto_msgTypes[9]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -993,7 +1721,7 @@ func (x *TradeUpdate) String() string {
 func (*TradeUpdate) ProtoMessage() {}
 
 func (x *TradeUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[9]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1006,7 +1734,7 @@ func (x *TradeUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TradeUpdate.ProtoReflect.Descriptor instead.
 func (*TradeUpdate) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{9}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *TradeUpdate) GetIsLockedIn() bool {
@@ -1046,7 +1774,7 @@ type TradeAccept struct {
 
 func (x *TradeAccept) Reset() {
 	*x = TradeAccept{}
-	mi := &file_game_packets_proto_msgTypes[10]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1058,7 +1786,7 @@ func (x *TradeAccept) String() string {
 func (*TradeAccept) ProtoMessage() {}
 
 func (x *TradeAccept) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[10]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1071,7 +1799,7 @@ func (x *TradeAccept) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TradeAccept.ProtoReflect.Descriptor instead.
 func (*TradeAccept) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{10}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *TradeAccept) GetIsLockedIn() bool {
@@ -1090,7 +1818,7 @@ type TradeCancel struct {
 
 func (x *TradeCancel) Reset() {
 	*x = TradeCancel{}
-	mi := &file_game_packets_proto_msgTypes[11]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1102,7 +1830,7 @@ func (x *TradeCancel) String() string {
 func (*TradeCancel) ProtoMessage() {}
 
 func (x *TradeCancel) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[11]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1115,7 +1843,7 @@ func (x *TradeCancel) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TradeCancel.ProtoReflect.Descriptor instead.
 func (*TradeCancel) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{11}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *TradeCancel) GetReason() string {
@@ -1125,29 +1853,28 @@ func (x *TradeCancel) GetReason() string {
 	return ""
 }
 
-// --- Existing Messages ---
-type PlayerDataUpdate struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	BaomainJsonData string                 `protobuf:"bytes,1,opt,name=baomain_json_data,json=baomainJsonData,proto3" json:"baomain_json_data,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+type TradeStart struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OtherUsername string                 `protobuf:"bytes,1,opt,name=other_username,json=otherUsername,proto3" json:"other_username,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-func (x *PlayerDataUpdate) Reset() {
-	*x = PlayerDataUpdate{}
-	mi := &file_game_packets_proto_msgTypes[12]
+func (x *TradeStart) Reset() {
+	*x = TradeStart{}
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PlayerDataUpdate) String() string {
+func (x *TradeStart) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PlayerDataUpdate) ProtoMessage() {}
+func (*TradeStart) ProtoMessage() {}
 
-func (x *PlayerDataUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[12]
+func (x *TradeStart) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1158,18 +1885,19 @@ func (x *PlayerDataUpdate) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PlayerDataUpdate.ProtoReflect.Descriptor instead.
-func (*PlayerDataUpdate) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{12}
+// Deprecated: Use TradeStart.ProtoReflect.Descriptor instead.
+func (*TradeStart) Descriptor() ([]byte, []int) {
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{27}
 }
 
-func (x *PlayerDataUpdate) GetBaomainJsonData() string {
+func (x *TradeStart) GetOtherUsername() string {
 	if x != nil {
-		return x.BaomainJsonData
+		return x.OtherUsername
 	}
 	return ""
 }
 
+// --- Admin ---
 type AdminGiveItemRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	TargetUsername string                 `protobuf:"bytes,1,opt,name=target_username,json=targetUsername,proto3" json:"target_username,omitempty"`
@@ -1181,7 +1909,7 @@ type AdminGiveItemRequest struct {
 
 func (x *AdminGiveItemRequest) Reset() {
 	*x = AdminGiveItemRequest{}
-	mi := &file_game_packets_proto_msgTypes[13]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1193,7 +1921,7 @@ func (x *AdminGiveItemRequest) String() string {
 func (*AdminGiveItemRequest) ProtoMessage() {}
 
 func (x *AdminGiveItemRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[13]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1206,7 +1934,7 @@ func (x *AdminGiveItemRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminGiveItemRequest.ProtoReflect.Descriptor instead.
 func (*AdminGiveItemRequest) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{13}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *AdminGiveItemRequest) GetTargetUsername() string {
@@ -1241,7 +1969,7 @@ type AdminBanRequest struct {
 
 func (x *AdminBanRequest) Reset() {
 	*x = AdminBanRequest{}
-	mi := &file_game_packets_proto_msgTypes[14]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1253,7 +1981,7 @@ func (x *AdminBanRequest) String() string {
 func (*AdminBanRequest) ProtoMessage() {}
 
 func (x *AdminBanRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[14]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1266,7 +1994,7 @@ func (x *AdminBanRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminBanRequest.ProtoReflect.Descriptor instead.
 func (*AdminBanRequest) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{14}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *AdminBanRequest) GetTargetUsername() string {
@@ -1300,7 +2028,7 @@ type AdminActionResponse struct {
 
 func (x *AdminActionResponse) Reset() {
 	*x = AdminActionResponse{}
-	mi := &file_game_packets_proto_msgTypes[15]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1312,7 +2040,7 @@ func (x *AdminActionResponse) String() string {
 func (*AdminActionResponse) ProtoMessage() {}
 
 func (x *AdminActionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[15]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1325,7 +2053,7 @@ func (x *AdminActionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminActionResponse.ProtoReflect.Descriptor instead.
 func (*AdminActionResponse) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{15}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *AdminActionResponse) GetSuccess() bool {
@@ -1342,894 +2070,6 @@ func (x *AdminActionResponse) GetResponseText() string {
 	return ""
 }
 
-type SaveDataRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	JsonData      string                 `protobuf:"bytes,1,opt,name=json_data,json=jsonData,proto3" json:"json_data,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SaveDataRequest) Reset() {
-	*x = SaveDataRequest{}
-	mi := &file_game_packets_proto_msgTypes[16]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SaveDataRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SaveDataRequest) ProtoMessage() {}
-
-func (x *SaveDataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[16]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SaveDataRequest.ProtoReflect.Descriptor instead.
-func (*SaveDataRequest) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{16}
-}
-
-func (x *SaveDataRequest) GetJsonData() string {
-	if x != nil {
-		return x.JsonData
-	}
-	return ""
-}
-
-type Player struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	Id              uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	BaomainJsonData string                 `protobuf:"bytes,3,opt,name=baomain_json_data,json=baomainJsonData,proto3" json:"baomain_json_data,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *Player) Reset() {
-	*x = Player{}
-	mi := &file_game_packets_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Player) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Player) ProtoMessage() {}
-
-func (x *Player) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Player.ProtoReflect.Descriptor instead.
-func (*Player) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{17}
-}
-
-func (x *Player) GetId() uint64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *Player) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *Player) GetBaomainJsonData() string {
-	if x != nil {
-		return x.BaomainJsonData
-	}
-	return ""
-}
-
-type LoginRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *LoginRequest) Reset() {
-	*x = LoginRequest{}
-	mi := &file_game_packets_proto_msgTypes[18]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *LoginRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*LoginRequest) ProtoMessage() {}
-
-func (x *LoginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[18]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
-func (*LoginRequest) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{18}
-}
-
-func (x *LoginRequest) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-func (x *LoginRequest) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-type RegisterRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	Color         int32                  `protobuf:"varint,3,opt,name=color,proto3" json:"color,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RegisterRequest) Reset() {
-	*x = RegisterRequest{}
-	mi := &file_game_packets_proto_msgTypes[19]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RegisterRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RegisterRequest) ProtoMessage() {}
-
-func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[19]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RegisterRequest.ProtoReflect.Descriptor instead.
-func (*RegisterRequest) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{19}
-}
-
-func (x *RegisterRequest) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-func (x *RegisterRequest) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-func (x *RegisterRequest) GetColor() int32 {
-	if x != nil {
-		return x.Color
-	}
-	return 0
-}
-
-type DenyResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Reason        string                 `protobuf:"bytes,1,opt,name=reason,proto3" json:"reason,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DenyResponse) Reset() {
-	*x = DenyResponse{}
-	mi := &file_game_packets_proto_msgTypes[20]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DenyResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DenyResponse) ProtoMessage() {}
-
-func (x *DenyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[20]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DenyResponse.ProtoReflect.Descriptor instead.
-func (*DenyResponse) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{20}
-}
-
-func (x *DenyResponse) GetReason() string {
-	if x != nil {
-		return x.Reason
-	}
-	return ""
-}
-
-type IdMessage struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *IdMessage) Reset() {
-	*x = IdMessage{}
-	mi := &file_game_packets_proto_msgTypes[21]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *IdMessage) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*IdMessage) ProtoMessage() {}
-
-func (x *IdMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[21]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use IdMessage.ProtoReflect.Descriptor instead.
-func (*IdMessage) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{21}
-}
-
-func (x *IdMessage) GetId() uint64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-type EnterMinigameRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EnterMinigameRequest) Reset() {
-	*x = EnterMinigameRequest{}
-	mi := &file_game_packets_proto_msgTypes[22]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EnterMinigameRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EnterMinigameRequest) ProtoMessage() {}
-
-func (x *EnterMinigameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[22]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EnterMinigameRequest.ProtoReflect.Descriptor instead.
-func (*EnterMinigameRequest) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{22}
-}
-
-type LeaveMinigameRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *LeaveMinigameRequest) Reset() {
-	*x = LeaveMinigameRequest{}
-	mi := &file_game_packets_proto_msgTypes[23]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *LeaveMinigameRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*LeaveMinigameRequest) ProtoMessage() {}
-
-func (x *LeaveMinigameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[23]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use LeaveMinigameRequest.ProtoReflect.Descriptor instead.
-func (*LeaveMinigameRequest) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{23}
-}
-
-type HiscoresRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *HiscoresRequest) Reset() {
-	*x = HiscoresRequest{}
-	mi := &file_game_packets_proto_msgTypes[24]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *HiscoresRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*HiscoresRequest) ProtoMessage() {}
-
-func (x *HiscoresRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[24]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use HiscoresRequest.ProtoReflect.Descriptor instead.
-func (*HiscoresRequest) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{24}
-}
-
-type PlayerDirectionMessage struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Direction     float64                `protobuf:"fixed64,1,opt,name=direction,proto3" json:"direction,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PlayerDirectionMessage) Reset() {
-	*x = PlayerDirectionMessage{}
-	mi := &file_game_packets_proto_msgTypes[25]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PlayerDirectionMessage) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PlayerDirectionMessage) ProtoMessage() {}
-
-func (x *PlayerDirectionMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[25]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PlayerDirectionMessage.ProtoReflect.Descriptor instead.
-func (*PlayerDirectionMessage) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{25}
-}
-
-func (x *PlayerDirectionMessage) GetDirection() float64 {
-	if x != nil {
-		return x.Direction
-	}
-	return 0
-}
-
-type PlayerMessage struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	X             float64                `protobuf:"fixed64,3,opt,name=x,proto3" json:"x,omitempty"`
-	Y             float64                `protobuf:"fixed64,4,opt,name=y,proto3" json:"y,omitempty"`
-	Radius        float64                `protobuf:"fixed64,5,opt,name=radius,proto3" json:"radius,omitempty"`
-	Direction     float64                `protobuf:"fixed64,6,opt,name=direction,proto3" json:"direction,omitempty"`
-	Speed         float64                `protobuf:"fixed64,7,opt,name=speed,proto3" json:"speed,omitempty"`
-	Color         int32                  `protobuf:"varint,8,opt,name=color,proto3" json:"color,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PlayerMessage) Reset() {
-	*x = PlayerMessage{}
-	mi := &file_game_packets_proto_msgTypes[26]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PlayerMessage) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PlayerMessage) ProtoMessage() {}
-
-func (x *PlayerMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[26]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PlayerMessage.ProtoReflect.Descriptor instead.
-func (*PlayerMessage) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{26}
-}
-
-func (x *PlayerMessage) GetId() uint64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *PlayerMessage) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *PlayerMessage) GetX() float64 {
-	if x != nil {
-		return x.X
-	}
-	return 0
-}
-
-func (x *PlayerMessage) GetY() float64 {
-	if x != nil {
-		return x.Y
-	}
-	return 0
-}
-
-func (x *PlayerMessage) GetRadius() float64 {
-	if x != nil {
-		return x.Radius
-	}
-	return 0
-}
-
-func (x *PlayerMessage) GetDirection() float64 {
-	if x != nil {
-		return x.Direction
-	}
-	return 0
-}
-
-func (x *PlayerMessage) GetSpeed() float64 {
-	if x != nil {
-		return x.Speed
-	}
-	return 0
-}
-
-func (x *PlayerMessage) GetColor() int32 {
-	if x != nil {
-		return x.Color
-	}
-	return 0
-}
-
-type SporeMessage struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	X             float64                `protobuf:"fixed64,2,opt,name=x,proto3" json:"x,omitempty"`
-	Y             float64                `protobuf:"fixed64,3,opt,name=y,proto3" json:"y,omitempty"`
-	Radius        float64                `protobuf:"fixed64,4,opt,name=radius,proto3" json:"radius,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SporeMessage) Reset() {
-	*x = SporeMessage{}
-	mi := &file_game_packets_proto_msgTypes[27]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SporeMessage) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SporeMessage) ProtoMessage() {}
-
-func (x *SporeMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[27]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SporeMessage.ProtoReflect.Descriptor instead.
-func (*SporeMessage) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{27}
-}
-
-func (x *SporeMessage) GetId() uint64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *SporeMessage) GetX() float64 {
-	if x != nil {
-		return x.X
-	}
-	return 0
-}
-
-func (x *SporeMessage) GetY() float64 {
-	if x != nil {
-		return x.Y
-	}
-	return 0
-}
-
-func (x *SporeMessage) GetRadius() float64 {
-	if x != nil {
-		return x.Radius
-	}
-	return 0
-}
-
-type SporeConsumedMessage struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	SporeId       uint64                 `protobuf:"varint,1,opt,name=spore_id,json=sporeId,proto3" json:"spore_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SporeConsumedMessage) Reset() {
-	*x = SporeConsumedMessage{}
-	mi := &file_game_packets_proto_msgTypes[28]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SporeConsumedMessage) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SporeConsumedMessage) ProtoMessage() {}
-
-func (x *SporeConsumedMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[28]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SporeConsumedMessage.ProtoReflect.Descriptor instead.
-func (*SporeConsumedMessage) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{28}
-}
-
-func (x *SporeConsumedMessage) GetSporeId() uint64 {
-	if x != nil {
-		return x.SporeId
-	}
-	return 0
-}
-
-type PlayerConsumedMessage struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PlayerId      uint64                 `protobuf:"varint,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PlayerConsumedMessage) Reset() {
-	*x = PlayerConsumedMessage{}
-	mi := &file_game_packets_proto_msgTypes[29]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PlayerConsumedMessage) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PlayerConsumedMessage) ProtoMessage() {}
-
-func (x *PlayerConsumedMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[29]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PlayerConsumedMessage.ProtoReflect.Descriptor instead.
-func (*PlayerConsumedMessage) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{29}
-}
-
-func (x *PlayerConsumedMessage) GetPlayerId() uint64 {
-	if x != nil {
-		return x.PlayerId
-	}
-	return 0
-}
-
-type ChatMessage struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Msg           string                 `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ChatMessage) Reset() {
-	*x = ChatMessage{}
-	mi := &file_game_packets_proto_msgTypes[30]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ChatMessage) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ChatMessage) ProtoMessage() {}
-
-func (x *ChatMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[30]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ChatMessage.ProtoReflect.Descriptor instead.
-func (*ChatMessage) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{30}
-}
-
-func (x *ChatMessage) GetMsg() string {
-	if x != nil {
-		return x.Msg
-	}
-	return ""
-}
-
-type MinigameState struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Players       []*PlayerMessage       `protobuf:"bytes,1,rep,name=players,proto3" json:"players,omitempty"`
-	Spores        []*SporeMessage        `protobuf:"bytes,2,rep,name=spores,proto3" json:"spores,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MinigameState) Reset() {
-	*x = MinigameState{}
-	mi := &file_game_packets_proto_msgTypes[31]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MinigameState) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MinigameState) ProtoMessage() {}
-
-func (x *MinigameState) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[31]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MinigameState.ProtoReflect.Descriptor instead.
-func (*MinigameState) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{31}
-}
-
-func (x *MinigameState) GetPlayers() []*PlayerMessage {
-	if x != nil {
-		return x.Players
-	}
-	return nil
-}
-
-func (x *MinigameState) GetSpores() []*SporeMessage {
-	if x != nil {
-		return x.Spores
-	}
-	return nil
-}
-
-type TradeStart struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OtherUsername string                 `protobuf:"bytes,1,opt,name=other_username,json=otherUsername,proto3" json:"other_username,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TradeStart) Reset() {
-	*x = TradeStart{}
-	mi := &file_game_packets_proto_msgTypes[32]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TradeStart) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TradeStart) ProtoMessage() {}
-
-func (x *TradeStart) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[32]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TradeStart.ProtoReflect.Descriptor instead.
-func (*TradeStart) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{32}
-}
-
-func (x *TradeStart) GetOtherUsername() string {
-	if x != nil {
-		return x.OtherUsername
-	}
-	return ""
-}
-
-type RequestMinigameState struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RequestMinigameState) Reset() {
-	*x = RequestMinigameState{}
-	mi := &file_game_packets_proto_msgTypes[33]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RequestMinigameState) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RequestMinigameState) ProtoMessage() {}
-
-func (x *RequestMinigameState) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[33]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RequestMinigameState.ProtoReflect.Descriptor instead.
-func (*RequestMinigameState) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{33}
-}
-
 type FriendListUpdate_Friend struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
@@ -2241,7 +2081,7 @@ type FriendListUpdate_Friend struct {
 
 func (x *FriendListUpdate_Friend) Reset() {
 	*x = FriendListUpdate_Friend{}
-	mi := &file_game_packets_proto_msgTypes[34]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2253,7 +2093,7 @@ func (x *FriendListUpdate_Friend) String() string {
 func (*FriendListUpdate_Friend) ProtoMessage() {}
 
 func (x *FriendListUpdate_Friend) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[34]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2266,7 +2106,7 @@ func (x *FriendListUpdate_Friend) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendListUpdate_Friend.ProtoReflect.Descriptor instead.
 func (*FriendListUpdate_Friend) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{5, 0}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{20, 0}
 }
 
 func (x *FriendListUpdate_Friend) GetUsername() string {
@@ -2300,7 +2140,7 @@ type TradeUpdate_TradeItem struct {
 
 func (x *TradeUpdate_TradeItem) Reset() {
 	*x = TradeUpdate_TradeItem{}
-	mi := &file_game_packets_proto_msgTypes[35]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2312,7 +2152,7 @@ func (x *TradeUpdate_TradeItem) String() string {
 func (*TradeUpdate_TradeItem) ProtoMessage() {}
 
 func (x *TradeUpdate_TradeItem) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[35]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2325,7 +2165,7 @@ func (x *TradeUpdate_TradeItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TradeUpdate_TradeItem.ProtoReflect.Descriptor instead.
 func (*TradeUpdate_TradeItem) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{9, 0}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{24, 0}
 }
 
 func (x *TradeUpdate_TradeItem) GetItemId() string {
@@ -2354,7 +2194,7 @@ type TradeUpdate_TradeChao struct {
 
 func (x *TradeUpdate_TradeChao) Reset() {
 	*x = TradeUpdate_TradeChao{}
-	mi := &file_game_packets_proto_msgTypes[36]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2366,7 +2206,7 @@ func (x *TradeUpdate_TradeChao) String() string {
 func (*TradeUpdate_TradeChao) ProtoMessage() {}
 
 func (x *TradeUpdate_TradeChao) ProtoReflect() protoreflect.Message {
-	mi := &file_game_packets_proto_msgTypes[36]
+	mi := &file_pkg_packets_game_packets_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2379,7 +2219,7 @@ func (x *TradeUpdate_TradeChao) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TradeUpdate_TradeChao.ProtoReflect.Descriptor instead.
 func (*TradeUpdate_TradeChao) Descriptor() ([]byte, []int) {
-	return file_game_packets_proto_rawDescGZIP(), []int{9, 1}
+	return file_pkg_packets_game_packets_proto_rawDescGZIP(), []int{24, 1}
 }
 
 func (x *TradeUpdate_TradeChao) GetChaoId() int64 {
@@ -2410,40 +2250,33 @@ func (x *TradeUpdate_TradeChao) GetScenePath() string {
 	return ""
 }
 
-var File_game_packets_proto protoreflect.FileDescriptor
+var File_pkg_packets_game_packets_proto protoreflect.FileDescriptor
 
-const file_game_packets_proto_rawDesc = "" +
+const file_pkg_packets_game_packets_proto_rawDesc = "" +
 	"\n" +
-	"\x12game_packets.proto\x12\apackets\"\xb8\x12\n" +
+	"\x1epkg/packets/game_packets.proto\x12\apackets\"\x86\x10\n" +
 	"\x06Packet\x12\x1b\n" +
 	"\tsender_id\x18\x01 \x01(\x04R\bsenderId\x12$\n" +
 	"\x02id\x18\x03 \x01(\v2\x12.packets.IdMessageH\x00R\x02id\x12<\n" +
 	"\rlogin_request\x18\x04 \x01(\v2\x15.packets.LoginRequestH\x00R\floginRequest\x12E\n" +
 	"\x10register_request\x18\x05 \x01(\v2\x18.packets.RegisterRequestH\x00R\x0fregisterRequest\x12<\n" +
-	"\rdeny_response\x18\a \x01(\v2\x15.packets.DenyResponseH\x00R\fdenyResponse\x12?\n" +
-	"\x0eplayer_message\x18\b \x01(\v2\x16.packets.PlayerMessageH\x00R\rplayerMessage\x12L\n" +
-	"\x10player_direction\x18\t \x01(\v2\x1f.packets.PlayerDirectionMessageH\x00R\x0fplayerDirection\x12-\n" +
-	"\x05spore\x18\n" +
-	" \x01(\v2\x15.packets.SporeMessageH\x00R\x05spore\x12F\n" +
-	"\x0espore_consumed\x18\v \x01(\v2\x1d.packets.SporeConsumedMessageH\x00R\rsporeConsumed\x12I\n" +
-	"\x0fplayer_consumed\x18\r \x01(\v2\x1e.packets.PlayerConsumedMessageH\x00R\x0eplayerConsumed\x12*\n" +
-	"\x04chat\x18\x14 \x01(\v2\x14.packets.ChatMessageH\x00R\x04chat\x12?\n" +
-	"\x0eminigame_state\x18\x15 \x01(\v2\x16.packets.MinigameStateH\x00R\rminigameState\x122\n" +
+	"\rdeny_response\x18\a \x01(\v2\x15.packets.DenyResponseH\x00R\fdenyResponse\x12F\n" +
+	"\x11save_data_request\x18\x19 \x01(\v2\x18.packets.SaveDataRequestH\x00R\x0fsaveDataRequest\x122\n" +
 	"\vplayer_data\x18\x16 \x01(\v2\x0f.packets.PlayerH\x00R\n" +
-	"playerData\x12U\n" +
-	"\x16enter_minigame_request\x18\x17 \x01(\v2\x1d.packets.EnterMinigameRequestH\x00R\x14enterMinigameRequest\x12U\n" +
-	"\x16leave_minigame_request\x18\x18 \x01(\v2\x1d.packets.LeaveMinigameRequestH\x00R\x14leaveMinigameRequest\x12F\n" +
-	"\x11save_data_request\x18\x19 \x01(\v2\x18.packets.SaveDataRequestH\x00R\x0fsaveDataRequest\x12F\n" +
-	"\x11admin_ban_request\x18\x1a \x01(\v2\x18.packets.AdminBanRequestH\x00R\x0fadminBanRequest\x12R\n" +
-	"\x15admin_action_response\x18\x1b \x01(\v2\x1c.packets.AdminActionResponseH\x00R\x13adminActionResponse\x12V\n" +
-	"\x17admin_give_item_request\x18\x1c \x01(\v2\x1d.packets.AdminGiveItemRequestH\x00R\x14adminGiveItemRequest\x12I\n" +
+	"playerData\x12I\n" +
 	"\x12player_data_update\x18\x1d \x01(\v2\x19.packets.PlayerDataUpdateH\x00R\x10playerDataUpdate\x12L\n" +
+	"\x13enter_world_request\x182 \x01(\v2\x1a.packets.EnterWorldRequestH\x00R\x11enterWorldRequest\x12-\n" +
+	"\bmap_data\x183 \x01(\v2\x10.packets.MapDataH\x00R\amapData\x12L\n" +
+	"\x13player_move_request\x184 \x01(\v2\x1a.packets.PlayerMoveRequestH\x00R\x11playerMoveRequest\x12U\n" +
+	"\x16player_position_update\x185 \x01(\v2\x1d.packets.PlayerPositionUpdateH\x00R\x14playerPositionUpdate\x12C\n" +
+	"\x10player_enter_map\x186 \x01(\v2\x17.packets.PlayerEnterMapH\x00R\x0eplayerEnterMap\x12C\n" +
+	"\x10player_leave_map\x187 \x01(\v2\x17.packets.PlayerLeaveMapH\x00R\x0eplayerLeaveMap\x12*\n" +
+	"\x04chat\x18\x14 \x01(\v2\x14.packets.ChatMessageH\x00R\x04chat\x12L\n" +
 	"\x13friend_request_list\x18\x1e \x01(\v2\x1a.packets.FriendRequestListH\x00R\x11friendRequestList\x12L\n" +
 	"\x13friend_request_send\x18\x1f \x01(\v2\x1a.packets.FriendRequestSendH\x00R\x11friendRequestSend\x12X\n" +
 	"\x17friend_request_response\x18  \x01(\v2\x1e.packets.FriendRequestResponseH\x00R\x15friendRequestResponse\x12<\n" +
 	"\rfriend_remove\x18! \x01(\v2\x15.packets.FriendRemoveH\x00R\ffriendRemove\x12I\n" +
-	"\x12friend_list_update\x18\" \x01(\v2\x19.packets.FriendListUpdateH\x00R\x10friendListUpdate\x12E\n" +
-	"\x10hiscores_request\x18# \x01(\v2\x18.packets.HiscoresRequestH\x00R\x0fhiscoresRequest\x12I\n" +
+	"\x12friend_list_update\x18\" \x01(\v2\x19.packets.FriendListUpdateH\x00R\x10friendListUpdate\x12I\n" +
 	"\x12trade_request_send\x18( \x01(\v2\x19.packets.TradeRequestSendH\x00R\x10tradeRequestSend\x12R\n" +
 	"\x15trade_request_receive\x18) \x01(\v2\x1c.packets.TradeRequestReceiveH\x00R\x13tradeRequestReceive\x12U\n" +
 	"\x16trade_request_response\x18* \x01(\v2\x1d.packets.TradeRequestResponseH\x00R\x14tradeRequestResponse\x129\n" +
@@ -2451,9 +2284,56 @@ const file_game_packets_proto_rawDesc = "" +
 	"\ftrade_accept\x18, \x01(\v2\x14.packets.TradeAcceptH\x00R\vtradeAccept\x129\n" +
 	"\ftrade_cancel\x18- \x01(\v2\x14.packets.TradeCancelH\x00R\vtradeCancel\x126\n" +
 	"\vtrade_start\x18. \x01(\v2\x13.packets.TradeStartH\x00R\n" +
-	"tradeStart\x12U\n" +
-	"\x16request_minigame_state\x18/ \x01(\v2\x1d.packets.RequestMinigameStateH\x00R\x14requestMinigameStateB\x05\n" +
+	"tradeStart\x12F\n" +
+	"\x11admin_ban_request\x18\x1a \x01(\v2\x18.packets.AdminBanRequestH\x00R\x0fadminBanRequest\x12R\n" +
+	"\x15admin_action_response\x18\x1b \x01(\v2\x1c.packets.AdminActionResponseH\x00R\x13adminActionResponse\x12V\n" +
+	"\x17admin_give_item_request\x18\x1c \x01(\v2\x1d.packets.AdminGiveItemRequestH\x00R\x14adminGiveItemRequestB\x05\n" +
 	"\x03msg\"\x13\n" +
+	"\x11EnterWorldRequest\"P\n" +
+	"\aMapData\x12\x15\n" +
+	"\x06map_id\x18\x01 \x01(\tR\x05mapId\x12.\n" +
+	"\aplayers\x18\x02 \x03(\v2\x14.packets.OtherPlayerR\aplayers\"g\n" +
+	"\x11PlayerMoveRequest\x12\x19\n" +
+	"\btarget_x\x18\x01 \x01(\x05R\atargetX\x12\x19\n" +
+	"\btarget_y\x18\x02 \x01(\x05R\atargetY\x12\x1c\n" +
+	"\tdirection\x18\x03 \x01(\x05R\tdirection\"{\n" +
+	"\x14PlayerPositionUpdate\x12\x1b\n" +
+	"\tplayer_id\x18\x01 \x01(\x04R\bplayerId\x12\x13\n" +
+	"\x05new_x\x18\x02 \x01(\x05R\x04newX\x12\x13\n" +
+	"\x05new_y\x18\x03 \x01(\x05R\x04newY\x12\x1c\n" +
+	"\tdirection\x18\x04 \x01(\x05R\tdirection\">\n" +
+	"\x0ePlayerEnterMap\x12,\n" +
+	"\x06player\x18\x01 \x01(\v2\x14.packets.OtherPlayerR\x06player\"-\n" +
+	"\x0ePlayerLeaveMap\x12\x1b\n" +
+	"\tplayer_id\x18\x01 \x01(\x04R\bplayerId\"\x9d\x01\n" +
+	"\vOtherPlayer\x12\x1b\n" +
+	"\tplayer_id\x18\x01 \x01(\x04R\bplayerId\x12\x1a\n" +
+	"\busername\x18\x02 \x01(\tR\busername\x12\f\n" +
+	"\x01x\x18\x03 \x01(\x05R\x01x\x12\f\n" +
+	"\x01y\x18\x04 \x01(\x05R\x01y\x12\x1c\n" +
+	"\tdirection\x18\x05 \x01(\x05R\tdirection\x12\x1b\n" +
+	"\tsprite_id\x18\x06 \x01(\tR\bspriteId\"\x1b\n" +
+	"\tIdMessage\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\"F\n" +
+	"\fLoginRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"_\n" +
+	"\x0fRegisterRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x14\n" +
+	"\x05color\x18\x03 \x01(\x05R\x05color\"&\n" +
+	"\fDenyResponse\x12\x16\n" +
+	"\x06reason\x18\x01 \x01(\tR\x06reason\".\n" +
+	"\x0fSaveDataRequest\x12\x1b\n" +
+	"\tjson_data\x18\x01 \x01(\tR\bjsonData\"X\n" +
+	"\x06Player\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12*\n" +
+	"\x11baomain_json_data\x18\x03 \x01(\tR\x0fbaomainJsonData\">\n" +
+	"\x10PlayerDataUpdate\x12*\n" +
+	"\x11baomain_json_data\x18\x01 \x01(\tR\x0fbaomainJsonData\"\x1f\n" +
+	"\vChatMessage\x12\x10\n" +
+	"\x03msg\x18\x01 \x01(\tR\x03msg\"\x13\n" +
 	"\x11FriendRequestList\"<\n" +
 	"\x11FriendRequestSend\x12'\n" +
 	"\x0ftarget_username\x18\x01 \x01(\tR\x0etargetUsername\"X\n" +
@@ -2494,9 +2374,10 @@ const file_game_packets_proto_rawDesc = "" +
 	"\fis_locked_in\x18\x01 \x01(\bR\n" +
 	"isLockedIn\"%\n" +
 	"\vTradeCancel\x12\x16\n" +
-	"\x06reason\x18\x01 \x01(\tR\x06reason\">\n" +
-	"\x10PlayerDataUpdate\x12*\n" +
-	"\x11baomain_json_data\x18\x01 \x01(\tR\x0fbaomainJsonData\"p\n" +
+	"\x06reason\x18\x01 \x01(\tR\x06reason\"3\n" +
+	"\n" +
+	"TradeStart\x12%\n" +
+	"\x0eother_username\x18\x01 \x01(\tR\rotherUsername\"p\n" +
 	"\x14AdminGiveItemRequest\x12'\n" +
 	"\x0ftarget_username\x18\x01 \x01(\tR\x0etargetUsername\x12\x17\n" +
 	"\aitem_id\x18\x02 \x01(\tR\x06itemId\x12\x16\n" +
@@ -2507,186 +2388,124 @@ const file_game_packets_proto_rawDesc = "" +
 	"\x10duration_seconds\x18\x03 \x01(\x03R\x0fdurationSeconds\"T\n" +
 	"\x13AdminActionResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12#\n" +
-	"\rresponse_text\x18\x02 \x01(\tR\fresponseText\".\n" +
-	"\x0fSaveDataRequest\x12\x1b\n" +
-	"\tjson_data\x18\x01 \x01(\tR\bjsonData\"X\n" +
-	"\x06Player\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12*\n" +
-	"\x11baomain_json_data\x18\x03 \x01(\tR\x0fbaomainJsonData\"F\n" +
-	"\fLoginRequest\x12\x1a\n" +
-	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"_\n" +
-	"\x0fRegisterRequest\x12\x1a\n" +
-	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x14\n" +
-	"\x05color\x18\x03 \x01(\x05R\x05color\"&\n" +
-	"\fDenyResponse\x12\x16\n" +
-	"\x06reason\x18\x01 \x01(\tR\x06reason\"\x1b\n" +
-	"\tIdMessage\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\"\x16\n" +
-	"\x14EnterMinigameRequest\"\x16\n" +
-	"\x14LeaveMinigameRequest\"\x11\n" +
-	"\x0fHiscoresRequest\"6\n" +
-	"\x16PlayerDirectionMessage\x12\x1c\n" +
-	"\tdirection\x18\x01 \x01(\x01R\tdirection\"\xb1\x01\n" +
-	"\rPlayerMessage\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\f\n" +
-	"\x01x\x18\x03 \x01(\x01R\x01x\x12\f\n" +
-	"\x01y\x18\x04 \x01(\x01R\x01y\x12\x16\n" +
-	"\x06radius\x18\x05 \x01(\x01R\x06radius\x12\x1c\n" +
-	"\tdirection\x18\x06 \x01(\x01R\tdirection\x12\x14\n" +
-	"\x05speed\x18\a \x01(\x01R\x05speed\x12\x14\n" +
-	"\x05color\x18\b \x01(\x05R\x05color\"R\n" +
-	"\fSporeMessage\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\x12\f\n" +
-	"\x01x\x18\x02 \x01(\x01R\x01x\x12\f\n" +
-	"\x01y\x18\x03 \x01(\x01R\x01y\x12\x16\n" +
-	"\x06radius\x18\x04 \x01(\x01R\x06radius\"1\n" +
-	"\x14SporeConsumedMessage\x12\x19\n" +
-	"\bspore_id\x18\x01 \x01(\x04R\asporeId\"4\n" +
-	"\x15PlayerConsumedMessage\x12\x1b\n" +
-	"\tplayer_id\x18\x01 \x01(\x04R\bplayerId\"\x1f\n" +
-	"\vChatMessage\x12\x10\n" +
-	"\x03msg\x18\x01 \x01(\tR\x03msg\"p\n" +
-	"\rMinigameState\x120\n" +
-	"\aplayers\x18\x01 \x03(\v2\x16.packets.PlayerMessageR\aplayers\x12-\n" +
-	"\x06spores\x18\x02 \x03(\v2\x15.packets.SporeMessageR\x06spores\"3\n" +
-	"\n" +
-	"TradeStart\x12%\n" +
-	"\x0eother_username\x18\x01 \x01(\tR\rotherUsername\"\x16\n" +
-	"\x14RequestMinigameStateB\x1fZ\x1dchaogarden-server/pkg/packetsb\x06proto3"
+	"\rresponse_text\x18\x02 \x01(\tR\fresponseTextB\x1fZ\x1dchaogarden-server/pkg/packetsb\x06proto3"
 
 var (
-	file_game_packets_proto_rawDescOnce sync.Once
-	file_game_packets_proto_rawDescData []byte
+	file_pkg_packets_game_packets_proto_rawDescOnce sync.Once
+	file_pkg_packets_game_packets_proto_rawDescData []byte
 )
 
-func file_game_packets_proto_rawDescGZIP() []byte {
-	file_game_packets_proto_rawDescOnce.Do(func() {
-		file_game_packets_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_game_packets_proto_rawDesc), len(file_game_packets_proto_rawDesc)))
+func file_pkg_packets_game_packets_proto_rawDescGZIP() []byte {
+	file_pkg_packets_game_packets_proto_rawDescOnce.Do(func() {
+		file_pkg_packets_game_packets_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_pkg_packets_game_packets_proto_rawDesc), len(file_pkg_packets_game_packets_proto_rawDesc)))
 	})
-	return file_game_packets_proto_rawDescData
+	return file_pkg_packets_game_packets_proto_rawDescData
 }
 
-var file_game_packets_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
-var file_game_packets_proto_goTypes = []any{
+var file_pkg_packets_game_packets_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
+var file_pkg_packets_game_packets_proto_goTypes = []any{
 	(*Packet)(nil),                  // 0: packets.Packet
-	(*FriendRequestList)(nil),       // 1: packets.FriendRequestList
-	(*FriendRequestSend)(nil),       // 2: packets.FriendRequestSend
-	(*FriendRequestResponse)(nil),   // 3: packets.FriendRequestResponse
-	(*FriendRemove)(nil),            // 4: packets.FriendRemove
-	(*FriendListUpdate)(nil),        // 5: packets.FriendListUpdate
-	(*TradeRequestSend)(nil),        // 6: packets.TradeRequestSend
-	(*TradeRequestReceive)(nil),     // 7: packets.TradeRequestReceive
-	(*TradeRequestResponse)(nil),    // 8: packets.TradeRequestResponse
-	(*TradeUpdate)(nil),             // 9: packets.TradeUpdate
-	(*TradeAccept)(nil),             // 10: packets.TradeAccept
-	(*TradeCancel)(nil),             // 11: packets.TradeCancel
-	(*PlayerDataUpdate)(nil),        // 12: packets.PlayerDataUpdate
-	(*AdminGiveItemRequest)(nil),    // 13: packets.AdminGiveItemRequest
-	(*AdminBanRequest)(nil),         // 14: packets.AdminBanRequest
-	(*AdminActionResponse)(nil),     // 15: packets.AdminActionResponse
-	(*SaveDataRequest)(nil),         // 16: packets.SaveDataRequest
-	(*Player)(nil),                  // 17: packets.Player
-	(*LoginRequest)(nil),            // 18: packets.LoginRequest
-	(*RegisterRequest)(nil),         // 19: packets.RegisterRequest
-	(*DenyResponse)(nil),            // 20: packets.DenyResponse
-	(*IdMessage)(nil),               // 21: packets.IdMessage
-	(*EnterMinigameRequest)(nil),    // 22: packets.EnterMinigameRequest
-	(*LeaveMinigameRequest)(nil),    // 23: packets.LeaveMinigameRequest
-	(*HiscoresRequest)(nil),         // 24: packets.HiscoresRequest
-	(*PlayerDirectionMessage)(nil),  // 25: packets.PlayerDirectionMessage
-	(*PlayerMessage)(nil),           // 26: packets.PlayerMessage
-	(*SporeMessage)(nil),            // 27: packets.SporeMessage
-	(*SporeConsumedMessage)(nil),    // 28: packets.SporeConsumedMessage
-	(*PlayerConsumedMessage)(nil),   // 29: packets.PlayerConsumedMessage
-	(*ChatMessage)(nil),             // 30: packets.ChatMessage
-	(*MinigameState)(nil),           // 31: packets.MinigameState
-	(*TradeStart)(nil),              // 32: packets.TradeStart
-	(*RequestMinigameState)(nil),    // 33: packets.RequestMinigameState
-	(*FriendListUpdate_Friend)(nil), // 34: packets.FriendListUpdate.Friend
-	(*TradeUpdate_TradeItem)(nil),   // 35: packets.TradeUpdate.TradeItem
-	(*TradeUpdate_TradeChao)(nil),   // 36: packets.TradeUpdate.TradeChao
+	(*EnterWorldRequest)(nil),       // 1: packets.EnterWorldRequest
+	(*MapData)(nil),                 // 2: packets.MapData
+	(*PlayerMoveRequest)(nil),       // 3: packets.PlayerMoveRequest
+	(*PlayerPositionUpdate)(nil),    // 4: packets.PlayerPositionUpdate
+	(*PlayerEnterMap)(nil),          // 5: packets.PlayerEnterMap
+	(*PlayerLeaveMap)(nil),          // 6: packets.PlayerLeaveMap
+	(*OtherPlayer)(nil),             // 7: packets.OtherPlayer
+	(*IdMessage)(nil),               // 8: packets.IdMessage
+	(*LoginRequest)(nil),            // 9: packets.LoginRequest
+	(*RegisterRequest)(nil),         // 10: packets.RegisterRequest
+	(*DenyResponse)(nil),            // 11: packets.DenyResponse
+	(*SaveDataRequest)(nil),         // 12: packets.SaveDataRequest
+	(*Player)(nil),                  // 13: packets.Player
+	(*PlayerDataUpdate)(nil),        // 14: packets.PlayerDataUpdate
+	(*ChatMessage)(nil),             // 15: packets.ChatMessage
+	(*FriendRequestList)(nil),       // 16: packets.FriendRequestList
+	(*FriendRequestSend)(nil),       // 17: packets.FriendRequestSend
+	(*FriendRequestResponse)(nil),   // 18: packets.FriendRequestResponse
+	(*FriendRemove)(nil),            // 19: packets.FriendRemove
+	(*FriendListUpdate)(nil),        // 20: packets.FriendListUpdate
+	(*TradeRequestSend)(nil),        // 21: packets.TradeRequestSend
+	(*TradeRequestReceive)(nil),     // 22: packets.TradeRequestReceive
+	(*TradeRequestResponse)(nil),    // 23: packets.TradeRequestResponse
+	(*TradeUpdate)(nil),             // 24: packets.TradeUpdate
+	(*TradeAccept)(nil),             // 25: packets.TradeAccept
+	(*TradeCancel)(nil),             // 26: packets.TradeCancel
+	(*TradeStart)(nil),              // 27: packets.TradeStart
+	(*AdminGiveItemRequest)(nil),    // 28: packets.AdminGiveItemRequest
+	(*AdminBanRequest)(nil),         // 29: packets.AdminBanRequest
+	(*AdminActionResponse)(nil),     // 30: packets.AdminActionResponse
+	(*FriendListUpdate_Friend)(nil), // 31: packets.FriendListUpdate.Friend
+	(*TradeUpdate_TradeItem)(nil),   // 32: packets.TradeUpdate.TradeItem
+	(*TradeUpdate_TradeChao)(nil),   // 33: packets.TradeUpdate.TradeChao
 }
-var file_game_packets_proto_depIdxs = []int32{
-	21, // 0: packets.Packet.id:type_name -> packets.IdMessage
-	18, // 1: packets.Packet.login_request:type_name -> packets.LoginRequest
-	19, // 2: packets.Packet.register_request:type_name -> packets.RegisterRequest
-	20, // 3: packets.Packet.deny_response:type_name -> packets.DenyResponse
-	26, // 4: packets.Packet.player_message:type_name -> packets.PlayerMessage
-	25, // 5: packets.Packet.player_direction:type_name -> packets.PlayerDirectionMessage
-	27, // 6: packets.Packet.spore:type_name -> packets.SporeMessage
-	28, // 7: packets.Packet.spore_consumed:type_name -> packets.SporeConsumedMessage
-	29, // 8: packets.Packet.player_consumed:type_name -> packets.PlayerConsumedMessage
-	30, // 9: packets.Packet.chat:type_name -> packets.ChatMessage
-	31, // 10: packets.Packet.minigame_state:type_name -> packets.MinigameState
-	17, // 11: packets.Packet.player_data:type_name -> packets.Player
-	22, // 12: packets.Packet.enter_minigame_request:type_name -> packets.EnterMinigameRequest
-	23, // 13: packets.Packet.leave_minigame_request:type_name -> packets.LeaveMinigameRequest
-	16, // 14: packets.Packet.save_data_request:type_name -> packets.SaveDataRequest
-	14, // 15: packets.Packet.admin_ban_request:type_name -> packets.AdminBanRequest
-	15, // 16: packets.Packet.admin_action_response:type_name -> packets.AdminActionResponse
-	13, // 17: packets.Packet.admin_give_item_request:type_name -> packets.AdminGiveItemRequest
-	12, // 18: packets.Packet.player_data_update:type_name -> packets.PlayerDataUpdate
-	1,  // 19: packets.Packet.friend_request_list:type_name -> packets.FriendRequestList
-	2,  // 20: packets.Packet.friend_request_send:type_name -> packets.FriendRequestSend
-	3,  // 21: packets.Packet.friend_request_response:type_name -> packets.FriendRequestResponse
-	4,  // 22: packets.Packet.friend_remove:type_name -> packets.FriendRemove
-	5,  // 23: packets.Packet.friend_list_update:type_name -> packets.FriendListUpdate
-	24, // 24: packets.Packet.hiscores_request:type_name -> packets.HiscoresRequest
-	6,  // 25: packets.Packet.trade_request_send:type_name -> packets.TradeRequestSend
-	7,  // 26: packets.Packet.trade_request_receive:type_name -> packets.TradeRequestReceive
-	8,  // 27: packets.Packet.trade_request_response:type_name -> packets.TradeRequestResponse
-	9,  // 28: packets.Packet.trade_update:type_name -> packets.TradeUpdate
-	10, // 29: packets.Packet.trade_accept:type_name -> packets.TradeAccept
-	11, // 30: packets.Packet.trade_cancel:type_name -> packets.TradeCancel
-	32, // 31: packets.Packet.trade_start:type_name -> packets.TradeStart
-	33, // 32: packets.Packet.request_minigame_state:type_name -> packets.RequestMinigameState
-	34, // 33: packets.FriendListUpdate.friends:type_name -> packets.FriendListUpdate.Friend
-	35, // 34: packets.TradeUpdate.items:type_name -> packets.TradeUpdate.TradeItem
-	36, // 35: packets.TradeUpdate.chao:type_name -> packets.TradeUpdate.TradeChao
-	26, // 36: packets.MinigameState.players:type_name -> packets.PlayerMessage
-	27, // 37: packets.MinigameState.spores:type_name -> packets.SporeMessage
-	38, // [38:38] is the sub-list for method output_type
-	38, // [38:38] is the sub-list for method input_type
-	38, // [38:38] is the sub-list for extension type_name
-	38, // [38:38] is the sub-list for extension extendee
-	0,  // [0:38] is the sub-list for field type_name
+var file_pkg_packets_game_packets_proto_depIdxs = []int32{
+	8,  // 0: packets.Packet.id:type_name -> packets.IdMessage
+	9,  // 1: packets.Packet.login_request:type_name -> packets.LoginRequest
+	10, // 2: packets.Packet.register_request:type_name -> packets.RegisterRequest
+	11, // 3: packets.Packet.deny_response:type_name -> packets.DenyResponse
+	12, // 4: packets.Packet.save_data_request:type_name -> packets.SaveDataRequest
+	13, // 5: packets.Packet.player_data:type_name -> packets.Player
+	14, // 6: packets.Packet.player_data_update:type_name -> packets.PlayerDataUpdate
+	1,  // 7: packets.Packet.enter_world_request:type_name -> packets.EnterWorldRequest
+	2,  // 8: packets.Packet.map_data:type_name -> packets.MapData
+	3,  // 9: packets.Packet.player_move_request:type_name -> packets.PlayerMoveRequest
+	4,  // 10: packets.Packet.player_position_update:type_name -> packets.PlayerPositionUpdate
+	5,  // 11: packets.Packet.player_enter_map:type_name -> packets.PlayerEnterMap
+	6,  // 12: packets.Packet.player_leave_map:type_name -> packets.PlayerLeaveMap
+	15, // 13: packets.Packet.chat:type_name -> packets.ChatMessage
+	16, // 14: packets.Packet.friend_request_list:type_name -> packets.FriendRequestList
+	17, // 15: packets.Packet.friend_request_send:type_name -> packets.FriendRequestSend
+	18, // 16: packets.Packet.friend_request_response:type_name -> packets.FriendRequestResponse
+	19, // 17: packets.Packet.friend_remove:type_name -> packets.FriendRemove
+	20, // 18: packets.Packet.friend_list_update:type_name -> packets.FriendListUpdate
+	21, // 19: packets.Packet.trade_request_send:type_name -> packets.TradeRequestSend
+	22, // 20: packets.Packet.trade_request_receive:type_name -> packets.TradeRequestReceive
+	23, // 21: packets.Packet.trade_request_response:type_name -> packets.TradeRequestResponse
+	24, // 22: packets.Packet.trade_update:type_name -> packets.TradeUpdate
+	25, // 23: packets.Packet.trade_accept:type_name -> packets.TradeAccept
+	26, // 24: packets.Packet.trade_cancel:type_name -> packets.TradeCancel
+	27, // 25: packets.Packet.trade_start:type_name -> packets.TradeStart
+	29, // 26: packets.Packet.admin_ban_request:type_name -> packets.AdminBanRequest
+	30, // 27: packets.Packet.admin_action_response:type_name -> packets.AdminActionResponse
+	28, // 28: packets.Packet.admin_give_item_request:type_name -> packets.AdminGiveItemRequest
+	7,  // 29: packets.MapData.players:type_name -> packets.OtherPlayer
+	7,  // 30: packets.PlayerEnterMap.player:type_name -> packets.OtherPlayer
+	31, // 31: packets.FriendListUpdate.friends:type_name -> packets.FriendListUpdate.Friend
+	32, // 32: packets.TradeUpdate.items:type_name -> packets.TradeUpdate.TradeItem
+	33, // 33: packets.TradeUpdate.chao:type_name -> packets.TradeUpdate.TradeChao
+	34, // [34:34] is the sub-list for method output_type
+	34, // [34:34] is the sub-list for method input_type
+	34, // [34:34] is the sub-list for extension type_name
+	34, // [34:34] is the sub-list for extension extendee
+	0,  // [0:34] is the sub-list for field type_name
 }
 
-func init() { file_game_packets_proto_init() }
-func file_game_packets_proto_init() {
-	if File_game_packets_proto != nil {
+func init() { file_pkg_packets_game_packets_proto_init() }
+func file_pkg_packets_game_packets_proto_init() {
+	if File_pkg_packets_game_packets_proto != nil {
 		return
 	}
-	file_game_packets_proto_msgTypes[0].OneofWrappers = []any{
+	file_pkg_packets_game_packets_proto_msgTypes[0].OneofWrappers = []any{
 		(*Packet_Id)(nil),
 		(*Packet_LoginRequest)(nil),
 		(*Packet_RegisterRequest)(nil),
 		(*Packet_DenyResponse)(nil),
-		(*Packet_PlayerMessage)(nil),
-		(*Packet_PlayerDirection)(nil),
-		(*Packet_Spore)(nil),
-		(*Packet_SporeConsumed)(nil),
-		(*Packet_PlayerConsumed)(nil),
-		(*Packet_Chat)(nil),
-		(*Packet_MinigameState)(nil),
-		(*Packet_PlayerData)(nil),
-		(*Packet_EnterMinigameRequest)(nil),
-		(*Packet_LeaveMinigameRequest)(nil),
 		(*Packet_SaveDataRequest)(nil),
-		(*Packet_AdminBanRequest)(nil),
-		(*Packet_AdminActionResponse)(nil),
-		(*Packet_AdminGiveItemRequest)(nil),
+		(*Packet_PlayerData)(nil),
 		(*Packet_PlayerDataUpdate)(nil),
+		(*Packet_EnterWorldRequest)(nil),
+		(*Packet_MapData)(nil),
+		(*Packet_PlayerMoveRequest)(nil),
+		(*Packet_PlayerPositionUpdate)(nil),
+		(*Packet_PlayerEnterMap)(nil),
+		(*Packet_PlayerLeaveMap)(nil),
+		(*Packet_Chat)(nil),
 		(*Packet_FriendRequestList)(nil),
 		(*Packet_FriendRequestSend)(nil),
 		(*Packet_FriendRequestResponse)(nil),
 		(*Packet_FriendRemove)(nil),
 		(*Packet_FriendListUpdate)(nil),
-		(*Packet_HiscoresRequest)(nil),
 		(*Packet_TradeRequestSend)(nil),
 		(*Packet_TradeRequestReceive)(nil),
 		(*Packet_TradeRequestResponse)(nil),
@@ -2694,23 +2513,25 @@ func file_game_packets_proto_init() {
 		(*Packet_TradeAccept)(nil),
 		(*Packet_TradeCancel)(nil),
 		(*Packet_TradeStart)(nil),
-		(*Packet_RequestMinigameState)(nil),
+		(*Packet_AdminBanRequest)(nil),
+		(*Packet_AdminActionResponse)(nil),
+		(*Packet_AdminGiveItemRequest)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_game_packets_proto_rawDesc), len(file_game_packets_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_pkg_packets_game_packets_proto_rawDesc), len(file_pkg_packets_game_packets_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   37,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_game_packets_proto_goTypes,
-		DependencyIndexes: file_game_packets_proto_depIdxs,
-		MessageInfos:      file_game_packets_proto_msgTypes,
+		GoTypes:           file_pkg_packets_game_packets_proto_goTypes,
+		DependencyIndexes: file_pkg_packets_game_packets_proto_depIdxs,
+		MessageInfos:      file_pkg_packets_game_packets_proto_msgTypes,
 	}.Build()
-	File_game_packets_proto = out.File
-	file_game_packets_proto_goTypes = nil
-	file_game_packets_proto_depIdxs = nil
+	File_pkg_packets_game_packets_proto = out.File
+	file_pkg_packets_game_packets_proto_goTypes = nil
+	file_pkg_packets_game_packets_proto_depIdxs = nil
 }

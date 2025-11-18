@@ -7,9 +7,8 @@ import (
 	"path/filepath"
 
 	"chaogarden-server/internal/server"
-	"chaogarden-server/internal/server/clients"
 
-	_ "github.com/go-sql-driver/mysql" 
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
 )
 
@@ -17,22 +16,17 @@ func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found, loading from environment variables...")
 	}
-	
+
 	databaseUrl := os.Getenv("DATABASE_URL")
 	if databaseUrl == "" {
 		log.Fatal("DATABASE_URL environment variable is not set. Example: chaogarden_user:your_password@tcp(127.0.0.1:3306)/plorbgarden_db?charset=utf8mb4&parseTime=True&loc=Local")
 	}
 
-	dataDirPath, err := os.UserCacheDir()
-	if err != nil {
-		log.Fatalf("Error getting user cache directory: %v", err)
-	}
-
-	gameServer := server.NewHub(dataDirPath, databaseUrl)
+	gameServer := server.NewHub(databaseUrl)
 	go gameServer.Run()
 
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
-		clients.ServeWs(gameServer, w, r)
+		server.ServeWs(gameServer, w, r)
 	})
 
 	dir, err := os.Getwd()
