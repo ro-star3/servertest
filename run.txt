@@ -1,0 +1,2 @@
+cd R:\Godot4Go_MMO-0.12\server\cmd
+go run .

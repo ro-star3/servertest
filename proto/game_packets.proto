@@ -1,0 +1,197 @@
+syntax = "proto3";
+
+package packets;
+
+option go_package = "chaogarden-server/pkg/packets";
+
+message Packet {
+  uint64 sender_id = 1;
+  oneof msg {
+    IdMessage id = 3;
+    LoginRequest login_request = 4;
+    RegisterRequest register_request = 5;
+    DenyResponse deny_response = 7;
+    PlayerMessage player_message = 8;
+    PlayerDirectionMessage player_direction = 9;
+    SporeMessage spore = 10;
+    SporeConsumedMessage spore_consumed = 11;
+    PlayerConsumedMessage player_consumed = 13;
+    ChatMessage chat = 20;
+    MinigameState minigame_state = 21;
+    Player player_data = 22;
+    EnterMinigameRequest enter_minigame_request = 23;
+    LeaveMinigameRequest leave_minigame_request = 24;
+    SaveDataRequest save_data_request = 25;
+    AdminBanRequest admin_ban_request = 26;
+    AdminActionResponse admin_action_response = 27;
+    AdminGiveItemRequest admin_give_item_request = 28;
+    PlayerDataUpdate player_data_update = 29;
+
+    // --- NEW: Friends & Trading Packets ---
+    FriendRequestList friend_request_list = 30;
+    FriendRequestSend friend_request_send = 31;
+    FriendRequestResponse friend_request_response = 32;
+    FriendRemove friend_remove = 33;
+    FriendListUpdate friend_list_update = 34;
+    // --- NEW: Hiscores Packet ---
+    HiscoresRequest hiscores_request = 35;
+
+    TradeRequestSend trade_request_send = 40;
+    TradeRequestReceive trade_request_receive = 41;
+    TradeRequestResponse trade_request_response = 42;
+    TradeUpdate trade_update = 43;
+    TradeAccept trade_accept = 44;
+    TradeCancel trade_cancel = 45;
+    TradeStart trade_start = 46;
+    RequestMinigameState request_minigame_state = 47;
+  }
+}
+
+// --- Friends System Messages ---
+
+message FriendRequestList {} // Client -> Server: "Get my friends list"
+
+message FriendRequestSend {
+    string target_username = 1;
+}
+
+message FriendRequestResponse {
+    string target_username = 1;
+    bool accept = 2; // true to accept, false to reject
+}
+
+message FriendRemove {
+    string target_username = 1;
+}
+
+message FriendListUpdate {
+    message Friend {
+        string username = 1;
+        bool is_online = 2;
+        string status = 3; // 'pending_sent', 'pending_received', 'accepted'
+    }
+    repeated Friend friends = 1;
+}
+
+
+// --- Trading System Messages ---
+
+message TradeRequestSend {
+    string target_username = 1;
+}
+
+message TradeRequestReceive {
+    string from_username = 1;
+}
+
+message TradeRequestResponse {
+    string target_username = 1;
+    bool accept = 2;
+}
+
+message TradeUpdate {
+    bool is_locked_in = 1;
+    int64 rings = 2;
+    repeated TradeItem items = 3;
+    repeated TradeChao chao = 4;
+    message TradeItem {
+        string item_id = 1;
+        int32 amount = 2;
+    }
+    message TradeChao {
+        int64 chao_id = 1;
+        string chao_name = 2;
+        string rarity = 3;
+        string scene_path = 4;
+    }
+}
+
+message TradeAccept {
+    bool is_locked_in = 1;
+}
+
+message TradeCancel {
+    string reason = 1;
+}
+
+
+// --- Existing Messages ---
+message PlayerDataUpdate {
+  string baomain_json_data = 1;
+}
+message AdminGiveItemRequest {
+    string target_username = 1;
+    string item_id = 2;
+    int32 amount = 3;
+}
+message AdminBanRequest {
+    string target_username = 1;
+    string reason = 2;
+    int64 duration_seconds = 3;
+}
+message AdminActionResponse {
+    bool success = 1;
+    string response_text = 2;
+}
+message SaveDataRequest {
+  string json_data = 1;
+}
+message Player {
+  uint64 id = 1;
+  string name = 2;
+  string baomain_json_data = 3;
+}
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+message RegisterRequest {
+  string username = 1;
+  string password = 2;
+  int32 color = 3;
+}
+message DenyResponse {
+  string reason = 1;
+}
+message IdMessage {
+  uint64 id = 1;
+}
+message EnterMinigameRequest {}
+message LeaveMinigameRequest {}
+message HiscoresRequest {} // NEW
+message PlayerDirectionMessage {
+  double direction = 1;
+}
+message PlayerMessage {
+  uint64 id = 1;
+  string name = 2;
+  double x = 3;
+  double y = 4;
+  double radius = 5;
+  double direction = 6;
+  double speed = 7;
+  int32 color = 8;
+}
+message SporeMessage {
+  uint64 id = 1;
+  double x = 2;
+  double y = 3;
+  double radius = 4;
+}
+message SporeConsumedMessage {
+  uint64 spore_id = 1;
+}
+message PlayerConsumedMessage {
+  uint64 player_id = 1;
+}
+message ChatMessage {
+  string msg = 1;
+}
+message MinigameState {
+  repeated PlayerMessage players = 1;
+  repeated SporeMessage spores = 2;
+}
+message TradeStart {
+    string other_username = 1;
+}
+message RequestMinigameState {}
